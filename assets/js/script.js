@@ -1,8 +1,6 @@
 var event = $(".event");
 var calendarDay = $(".calendar-day");
 var calendarDate = $(".calendar-date");
-var dayDay;
-var dayDate;
 var todayDate = dayjs().format("MMMM DD, YYYY");
 
 const nflApi = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32'
@@ -45,23 +43,13 @@ function weatherData() {
             console.log(data)
         })
 
-    calendarDay.each(function (i) {
-        dayDay = ($(this).attr(data-date).val());
-        console.log(typeof dayDay);
-        console.log(dayDay);
-        //console.log($(this).data-date.val())
 
 
 
 
-
-
-        dayDate = dayjs().format("YYYY-MM-DD");
-        //console.log(dayDate);
-
-    })
 }
 
-weatherData();
+
+//weatherData();
 
 
