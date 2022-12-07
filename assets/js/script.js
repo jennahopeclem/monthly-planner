@@ -3,7 +3,7 @@
 const nflApi = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32'
 async function getiss() {
     const response = await fetch(nflApi);
-    const data = await response.json();
+    const data =  await response.json();
     const { items, } = data;
 
     console.log(items);
