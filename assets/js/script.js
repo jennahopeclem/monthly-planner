@@ -8,7 +8,8 @@ const nflApi= 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/t
 async function getiss(){
     const response = await fetch(nflApi);
     const data =  await response.json();
-    const { items, 1: } = data;
+    const { items, } = data;
+    //add 
 
     console.log(items)
 
