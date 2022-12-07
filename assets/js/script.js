@@ -1,4 +1,9 @@
-
+var event = $(".event");
+var calendarDay = $(".calendar-day");
+var calendarDate = $(".calendar-date");
+var dayDay;
+var dayDate;
+var todayDate = dayjs().format("MMMM DD, YYYY");
 
 const nflApi = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32'
 async function getiss() {
@@ -9,23 +14,23 @@ async function getiss() {
 
     for (var i = 0; i < items.length; i++) {
         var team = items[i];
-        
+
 
         fetch(team.$ref)
-        .then(function (response) {
-            // console.log(team.$ref); //console logs the team links
-            // console.log(response);
-            return response.json();
-        }) .then(function(data) {
-            console.log(data); //returns the data from the team links
-        })
-        
+            .then(function (response) {
+                // console.log(team.$ref); //console logs the team links
+                // console.log(response);
+                return response.json();
+            }).then(function (data) {
+                console.log(data); //returns the data from the team links
+            })
+
 
     }
 
 
 }
-getiss()
+//getiss()
 
 
 function weatherData() {
@@ -39,6 +44,24 @@ function weatherData() {
         .then(function (data) {
             console.log(data)
         })
+
+    calendarDay.each(function (i) {
+        dayDay = ($(this).attr(data-date).val());
+        console.log(typeof dayDay);
+        console.log(dayDay);
+        //console.log($(this).data-date.val())
+
+
+
+
+
+
+        dayDate = dayjs().format("YYYY-MM-DD");
+        //console.log(dayDate);
+
+    })
 }
 
 weatherData();
+
+
