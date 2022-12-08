@@ -85,9 +85,9 @@ function displayDates() {
 
 displayDates();
 
+function run (t){
 
-
-const nflApi = 'http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/1/events?lang=en&region=us'
+var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
 async function getiss() {
     const response = await fetch(nflApi);
     const data = await response.json();
@@ -111,6 +111,7 @@ async function getiss() {
     }
 
 
+}getiss()
 }
 //getiss()
 
@@ -147,3 +148,15 @@ async function getiss() {
 // }
 
 //holidayData();
+var Dd = document.querySelector("#Sd");
+var test = document.querySelector(".Sportsdropdown")
+// Listen for any clicks within the img-container div
+Dd.addEventListener("click", function(event) {
+  var element = event.target;
+  console.log(element)
+   
+    var t = element.getAttribute("id");    
+    
+run(t)
+console.log(t)
+});
