@@ -2,6 +2,60 @@ var event = $(".event");
 var calendarDay = $(".calendar-day");
 var calendarDate = $(".calendar-date");
 var todayDate = dayjs().format("MMMM DD, YYYY");
+//for comparing and displaying
+var curMonth = dayjs().format('MMMM');
+var curDay = dayjs().format('D');
+var curYear = dayjs().format('YYYY');
+var curWeekDay = dayjs().format('dddd');
+//vars we may need when formating the month dates
+var weekdays = [0, 1, 2, 3, 4, 5, 6];
+var numOfDays = dayjs().daysInMonth(); // number of days in the month
+var firstDayOfMonth = dayjs().startOf('month').$d;
+var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday too? ex. Thursday, 12/1/2022
+var firstWDofMonth = dayjs().startOf('month').day();
+var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
+
+
+var calendar = document.querySelector('#calendar');
+
+
+function displayDates() {
+    //displays month and year at top of calendar
+    var currentMonthYear = document.querySelector('#curr-month-year');
+    currentMonthYear.textContent = curMonth + ' ' + curYear;
+    //displays current weekday into box on side of calendar
+    var todaysWeekday = document.querySelector('#curWeekday');
+    todaysWeekday.textContent = curWeekDay;
+    //displays todays date and month into box on side of calendar
+    var curMonthDay = document.querySelector('#curMonthDay');
+    curMonthDay.textContent = curMonth + ' ' + curDay;
+
+    //function to compare the date number on the calendar to the current date and add class '.today'
+
+    //how are we going to update the calendar dates???? and making sure it starts on correct weekday???? 
+    for (let i = 1; i <= paddingDays + numOfDays; i++) { 
+        var dayBlock = document.createElement('div');
+        dayBlock.classList.add('calendar-day');
+        var calDate = document.createElement('span');
+        calDate.classList.add('calendar-date');
+        
+        if (i > paddingDays) {
+            calendarDate.textContent = "hello"; //supposed to add the date numbers... but is not 
+            //add eventlistener to change the aside box view?
+        } else {
+            dayBlock.classList.add('inactive');
+        }
+        calendar.appendChild(dayBlock);
+        dayBlock.appendChild(calDate);
+        console.log(i);
+    }
+
+    
+}
+
+displayDates();
+
+
 
 const nflApi = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32'
 async function getiss() {
@@ -50,6 +104,6 @@ function weatherData() {
 }
 
 
-//weatherData();
+weatherData();
 
 
