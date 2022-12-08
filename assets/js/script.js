@@ -1,7 +1,7 @@
 
-//team 1 Atlanta
-//team 2 bills
-//team 3 chicaggo bears
+//team 1 Atlanta Falcons
+//team 2 Buffalo Bills
+//team 3 Chicago Bears
 //team 4 Cincinnati Bengals
 //team 5 Cleveland Browns
 //team 6 Dallas Cowboys
