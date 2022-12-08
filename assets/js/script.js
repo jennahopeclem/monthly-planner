@@ -36,18 +36,19 @@ function displayDates() {
     for (let i = 1; i <= paddingDays + numOfDays; i++) { 
         var dayBlock = document.createElement('div');
         dayBlock.classList.add('calendar-day');
-        var calDate = document.createElement('span');
+        var calDate = document.createElement('div');
         calDate.classList.add('calendar-date');
         
         if (i > paddingDays) {
-            calendarDate.textContent = "hello"; //supposed to add the date numbers... but is not 
+            calDate.textContent = i - paddingDays; //supposed to add the date numbers... but is not 
+
             //add eventlistener to change the aside box view?
         } else {
             dayBlock.classList.add('inactive');
         }
         calendar.appendChild(dayBlock);
         dayBlock.appendChild(calDate);
-        console.log(i);
+         
     }
 
     

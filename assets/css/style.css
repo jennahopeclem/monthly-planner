@@ -357,7 +357,7 @@ li {
   width: 100px;
   height: 100px;
   float: right;
-  padding: 1.9rem 0.2rem 0.2rem;
+  padding: 5px;
   border:rgba(4, 6, 5, 0.3) solid 1px; /*added so i can see the boxes*/
 }
 
