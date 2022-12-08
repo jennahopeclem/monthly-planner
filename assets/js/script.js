@@ -1,3 +1,35 @@
+
+//team 1 Atlanta
+//team 2 bills
+//team 3 chicaggo bears
+//team 4 Cincinnati Bengals
+//team 5 Cleveland Browns
+//team 6 Dallas Cowboys
+//team 7 Denver Broncos
+//team 8 Detroit Lions
+//team 9 Green Bay Packers
+//team 10 Tennessee Titans
+//team 11 Indianapolis Colts
+//team 12 Kansas City Chiefs
+//team 13 Las Vegas Raiders
+//team 14 Los Angeles Rams
+//team 15 Miami Dolphins
+//team 16 Minnesota Vikings
+//team 17 New England Patriots
+//team 18 New Orleans Saints
+//team 19 New York Giants
+//team 20 New York Jets
+//team 21 Philadelphia Eagles
+//team 22 Arizona Cardinals
+//team 23 Pittsburgh Steelers
+//team 24  Los Angeles Charger
+//team 25 San Francisco 49ers
+//team 26 Seattle Seahawks
+//team 27 Tampa Bay Buccaneers
+//team 28 Washington Commanders
+//team 29 Carolina Panthers
+//team 30 Jacksonville Jaguars
+
 var event = $(".event");
 var calendarDay = $(".calendar-day");
 var calendarDate = $(".calendar-date");
@@ -14,7 +46,6 @@ var firstDayOfMonth = dayjs().startOf('month').$d;
 var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday too? ex. Thursday, 12/1/2022
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
-
 
 var calendar = document.querySelector('#calendar');
 
@@ -58,7 +89,8 @@ displayDates();
 
 
 
-const nflApi = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32'
+
+const nflApi = 'http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/1/events?lang=en&region=us'
 async function getiss() {
     const response = await fetch(nflApi);
     const data = await response.json();
@@ -86,6 +118,7 @@ async function getiss() {
 //getiss()
 
 
+
 function weatherData() {
     var weatherAPI = 'https://calendarific.com/api/v2/holidays?&api_key=0f6f3c056e70ebca75cebdcc5cbbadf546e7c0c1&country=US&year=2022&type=national';
 
@@ -106,5 +139,3 @@ function weatherData() {
 
 
 weatherData();
-
-
