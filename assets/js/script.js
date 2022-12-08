@@ -47,6 +47,7 @@ var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday 
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 
+
 var calendar = document.querySelector('#calendar');
 
 
@@ -64,12 +65,12 @@ function displayDates() {
     //function to compare the date number on the calendar to the current date and add class '.today'
 
     //how are we going to update the calendar dates???? and making sure it starts on correct weekday???? 
-    for (let i = 1; i <= paddingDays + numOfDays; i++) { 
+    for (let i = 1; i <= paddingDays + numOfDays; i++) {
         var dayBlock = document.createElement('div');
         dayBlock.classList.add('calendar-day');
         var calDate = document.createElement('div');
         calDate.classList.add('calendar-date');
-        
+
         if (i > paddingDays) {
             calDate.textContent = i - paddingDays; //supposed to add the date numbers... but is not 
 
@@ -79,10 +80,10 @@ function displayDates() {
         }
         calendar.appendChild(dayBlock);
         dayBlock.appendChild(calDate);
-         
+
     }
 
-    
+
 }
 
 displayDates();
@@ -118,24 +119,35 @@ async function getiss() {
 //getiss()
 
 
+// function holidayData() {
+//     var weatherAPI = 'https://calendarific.com/api/v2/holidays?&api_key=0f6f3c056e70ebca75cebdcc5cbbadf546e7c0c1&country=US&year=2022&type=national';
 
-function weatherData() {
-    var weatherAPI = 'https://calendarific.com/api/v2/holidays?&api_key=0f6f3c056e70ebca75cebdcc5cbbadf546e7c0c1&country=US&year=2022&type=national';
+//     fetch(weatherAPI)
+//         .then(function (response) {
+//             return response.json();
+//         })
+//         .then(function (data) {
+//             console.log(data)
 
-    fetch(weatherAPI)
-        .then(function (response) {
-            console.log(response);
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data)
-        })
+//             var holidayData = [];
+//             holidayData.push();
+//             console.log(holidayData);
 
+//             calendarDay.each(function (i) {
+//                 var idDate = dayjs().format("YYYY-MM-") + $(this).attr("id");
+//                 console.log(idDate);
 
+//                 // $(this).append(idDate);
 
+//                 console.log(data.response.holidays[0].date.iso)
+//                 if (idDate == data.response.holidays[0].date.iso) {
+//                     console.log(data.response.holidays[0].name)
+//                     $(this).event.innerHTML += `<p>${data.response.holidays[0].name}</p>`
+//                 }
 
+//             })
+//         })
 
-}
+// }
 
-
-weatherData();
+//holidayData();
