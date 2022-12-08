@@ -1,3 +1,4 @@
+
 //team 1 Atlanta
 //team 2 bills
 //team 3 chicaggo bears
@@ -46,7 +47,6 @@ var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday 
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 
-
 var calendar = document.querySelector('#calendar');
 
 
@@ -67,18 +67,19 @@ function displayDates() {
     for (let i = 1; i <= paddingDays + numOfDays; i++) { 
         var dayBlock = document.createElement('div');
         dayBlock.classList.add('calendar-day');
-        var calDate = document.createElement('span');
+        var calDate = document.createElement('div');
         calDate.classList.add('calendar-date');
         
         if (i > paddingDays) {
-            calendarDate.textContent = "hello"; //supposed to add the date numbers... but is not 
+            calDate.textContent = i - paddingDays; //supposed to add the date numbers... but is not 
+
             //add eventlistener to change the aside box view?
         } else {
             dayBlock.classList.add('inactive');
         }
         calendar.appendChild(dayBlock);
         dayBlock.appendChild(calDate);
-        console.log(i);
+         
     }
 
     
@@ -100,21 +101,21 @@ async function getiss() {
 
 
         fetch(team.$ref)
-        .then(function (response) {
-            // console.log(team.$ref); //console logs the team links
-            // console.log(response);
-            return response.json();
-        }) .then(function(data) {
-            const { date } = data;
-            console.log(date); //returns the data from the team links
-        
-        })}
-     
+            .then(function (response) {
+                // console.log(team.$ref); //console logs the team links
+                // console.log(response);
+                return response.json();
+            }).then(function (data) {
+                console.log(data); //returns the data from the team links
+            })
+
+
+    }
 
 
 }
+//getiss()
 
-getiss()
 
 
 function weatherData() {
@@ -135,10 +136,5 @@ function weatherData() {
 
 }
 
-weatherData();
 
-let click = document.querySelector('.click');
-let list = document.querySelector('list');
-click.addEventListener("click",()=>{
-    list.classList.toggle('newlist');
-});
+weatherData();
