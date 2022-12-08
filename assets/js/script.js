@@ -44,6 +44,7 @@ var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday 
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 
+var dayNumber;
 
 var calendar = document.querySelector('#calendar');
 
@@ -78,13 +79,17 @@ function displayDates() {
         calendar.appendChild(dayBlock);
         dayBlock.appendChild(calDate);
     }
+
+    // dayNumber = calendar.dayBlock.calDate.value
+    // console.log(dayNumber)
+
 }
 
 displayDates();
 
+function run (t){
 
-
-const nflApi = 'http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/1/events?lang=en&region=us'
+var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
 async function getiss() {
     const response = await fetch(nflApi);
     const data = await response.json();
@@ -108,6 +113,7 @@ async function getiss() {
     }
 
 
+}getiss()
 }
 //getiss()
 
@@ -122,25 +128,37 @@ async function getiss() {
 //         .then(function (data) {
 //             console.log(data)
 
-//             var holidayData = [];
-//             holidayData.push();
-//             console.log(holidayData);
+//             for (var i = 0; i < data.response.holidays.length; i++) {
 
-//             calendarDay.each(function (i) {
-//                 var idDate = dayjs().format("YYYY-MM-") + $(this).attr("id");
-//                 console.log(idDate);
-
-//                 // $(this).append(idDate);
-
-//                 console.log(data.response.holidays[0].date.iso)
-//                 if (idDate == data.response.holidays[0].date.iso) {
-//                     console.log(data.response.holidays[0].name)
-//                     $(this).event.innerHTML += `<p>${data.response.holidays[0].name}</p>`
+//                 var calendarMonth = dayjs().format('MM');
+//                 //if holiday month is same as current month
+//                 if (data.response.holidays[i].date.datetime.month == calendarMonth) {
+//                     //pull the date and match with calendar dates
+//                     //pull name and display in calendar
 //                 }
 
-//             })
+//                 console.log(data.response.holidays[i].date.datetime.month)
+
+
+
+//             }
+
 //         })
 
 // }
 
+
 //holidayData();
+
+var Dd = document.querySelector("#Sd");
+var test = document.querySelector(".Sportsdropdown")
+// Listen for any clicks within the img-container div
+Dd.addEventListener("click", function(event) {
+  var element = event.target;
+  console.log(element)
+   
+    var t = element.getAttribute("id");    
+    
+run(t)
+console.log(t)
+});
