@@ -1,3 +1,34 @@
+//team 1 Atlanta
+//team 2 bills
+//team 3 chicaggo bears
+//team 4 Cincinnati Bengals
+//team 5 Cleveland Browns
+//team 6 Dallas Cowboys
+//team 7 Denver Broncos
+//team 8 Detroit Lions
+//team 9 Green Bay Packers
+//team 10 Tennessee Titans
+//team 11 Indianapolis Colts
+//team 12 Kansas City Chiefs
+//team 13 Las Vegas Raiders
+//team 14 Los Angeles Rams
+//team 15 Miami Dolphins
+//team 16 Minnesota Vikings
+//team 17 New England Patriots
+//team 18 New Orleans Saints
+//team 19 New York Giants
+//team 20 New York Jets
+//team 21 Philadelphia Eagles
+//team 22 Arizona Cardinals
+//team 23 Pittsburgh Steelers
+//team 24  Los Angeles Charger
+//team 25 San Francisco 49ers
+//team 26 Seattle Seahawks
+//team 27 Tampa Bay Buccaneers
+//team 28 Washington Commanders
+//team 29 Carolina Panthers
+//team 30 Jacksonville Jaguars
+
 
 
 const nflApi = 'http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/1/events?lang=en&region=us'
@@ -43,3 +74,4 @@ function weatherData() {
 }
 
 weatherData();
+
