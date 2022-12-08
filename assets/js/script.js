@@ -44,6 +44,7 @@ var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday 
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 
+var dayNumber;
 
 var calendar = document.querySelector('#calendar');
 
@@ -80,6 +81,8 @@ function displayDates() {
 
     }
 
+    // dayNumber = calendar.dayBlock.calDate.value
+    // console.log(dayNumber)
 
 }
 
@@ -126,28 +129,28 @@ async function getiss() {
 //         .then(function (data) {
 //             console.log(data)
 
-//             var holidayData = [];
-//             holidayData.push();
-//             console.log(holidayData);
+//             for (var i = 0; i < data.response.holidays.length; i++) {
 
-//             calendarDay.each(function (i) {
-//                 var idDate = dayjs().format("YYYY-MM-") + $(this).attr("id");
-//                 console.log(idDate);
-
-//                 // $(this).append(idDate);
-
-//                 console.log(data.response.holidays[0].date.iso)
-//                 if (idDate == data.response.holidays[0].date.iso) {
-//                     console.log(data.response.holidays[0].name)
-//                     $(this).event.innerHTML += `<p>${data.response.holidays[0].name}</p>`
+//                 var calendarMonth = dayjs().format('MM');
+//                 //if holiday month is same as current month
+//                 if (data.response.holidays[i].date.datetime.month == calendarMonth) {
+//                     //pull the date and match with calendar dates
+//                     //pull name and display in calendar
 //                 }
 
-//             })
+//                 console.log(data.response.holidays[i].date.datetime.month)
+
+
+
+//             }
+
 //         })
 
 // }
 
+
 //holidayData();
+
 var Dd = document.querySelector("#Sd");
 var test = document.querySelector(".Sportsdropdown")
 // Listen for any clicks within the img-container div
