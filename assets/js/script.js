@@ -30,9 +30,6 @@
 //team 29 Carolina Panthers
 //team 30 Jacksonville Jaguars
 
-var event = $(".event");
-var calendarDay = $(".calendar-day");
-var calendarDate = $(".calendar-date");
 var todayDate = dayjs().format("MMMM DD, YYYY");
 //for comparing and displaying
 var curMonth = dayjs().format('MMMM');
