@@ -313,7 +313,7 @@ li {
   min-height: 580px;
   height: 100%;
   font-size: 12px;
-  padding: 0.8rem 0 1rem 1rem;
+  padding: 5px;
   background: #f5f7f6;
 }
 @media screen and (min-width: 55em) {
@@ -384,6 +384,9 @@ li {
 .today { 
   color: #9FD5FF;
 }
+
+
+/* styling of the nfl links */
 a {
   text-decoration: none;
 }

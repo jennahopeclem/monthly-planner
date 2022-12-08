@@ -60,8 +60,8 @@ function displayDates() {
     curMonthDay.textContent = curMonth + ' ' + curDay;
 
     //function to compare the date number on the calendar to the current date and add class '.today'
+    
 
-    //how are we going to update the calendar dates???? and making sure it starts on correct weekday???? 
     for (let i = 1; i <= paddingDays + numOfDays; i++) {
         var dayBlock = document.createElement('div');
         dayBlock.classList.add('calendar-day');
@@ -69,7 +69,7 @@ function displayDates() {
         calDate.classList.add('calendar-date');
 
         if (i > paddingDays) {
-            calDate.textContent = i - paddingDays; //supposed to add the date numbers... but is not 
+            calDate.textContent = i - paddingDays; 
 
             //add eventlistener to change the aside box view?
         } else {
@@ -77,10 +77,7 @@ function displayDates() {
         }
         calendar.appendChild(dayBlock);
         dayBlock.appendChild(calDate);
-
     }
-
-
 }
 
 displayDates();
