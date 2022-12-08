@@ -344,11 +344,18 @@ li {
   flex: 1 1 0;
 }
 
-#calendar {
+#container {
   width: 715px;
   float: right;
+}
+
+#calendar {
+  width: 715px;
+  display: flex;
+  flex-wrap: wrap;
   padding-right: 7px;
-  padding-bottom: 7px;;
+  padding-bottom: 7px;
+  padding-left: 7px;
 }
 .calendar-day {
   display: flex;
