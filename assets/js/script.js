@@ -2,6 +2,14 @@ var event = $(".event");
 var calendarDay = $(".calendar-day");
 var calendarDate = $(".calendar-date");
 var todayDate = dayjs().format("MMMM DD, YYYY");
+//for comparing, if we need
+var curMonth = dayjs().format('MMMM');
+var curDay = dayjs().format('D');
+var curYear = dayjs().format('YYYY');
+var curWeekDay = dayjs().format('dddd');
+
+
+
 
 const nflApi = 'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32'
 async function getiss() {
@@ -50,6 +58,6 @@ function weatherData() {
 }
 
 
-//weatherData();
+weatherData();
 
 
