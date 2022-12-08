@@ -362,7 +362,7 @@ li {
   flex-flow: column wrap;
   justify-content: space-between;
   width: 100px;
-  height: 100px;
+  height: 125px;
   float: right;
   padding: 5px;
   border:rgba(4, 6, 5, 0.3) solid 1px; /*added so i can see the boxes*/
