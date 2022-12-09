@@ -33,6 +33,7 @@
 var todayDate = dayjs().format("MMMM DD, YYYY");
 //for comparing and displaying
 var curMonth = dayjs().format('MMMM');
+var curMonthNum = dayjs().format('MM');
 var curDay = dayjs().format('D');
 var curYear = dayjs().format('YYYY');
 var curWeekDay = dayjs().format('dddd');
@@ -43,6 +44,8 @@ var firstDayOfMonth = dayjs().startOf('month').$d;
 var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday too? ex. Thursday, 12/1/2022
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
+
+var calDate;
 
 var dayNumber;
 
@@ -61,7 +64,7 @@ function displayDates() {
     curMonthDay.textContent = curMonth + ' ' + curDay;
 
     //function to compare the date number on the calendar to the current date and add class '.today'
-    
+
 
     for (let i = 1; i <= paddingDays + numOfDays; i++) {
         var dayBlock = document.createElement('div');
@@ -70,11 +73,12 @@ function displayDates() {
         calDate.classList.add('calendar-date');
 
         if (i > paddingDays) {
-            calDate.textContent = i - paddingDays; 
-
+            calDate.textContent = i - paddingDays;
+            calDate.setAttribute('id', curYear + '-' + curMonthNum + '-' + calDate.textContent);
             //add eventlistener to change the aside box view?
         } else {
             dayBlock.classList.add('inactive');
+            calDate.setAttribute('id', 'n/a')
         }
         calendar.appendChild(dayBlock);
         dayBlock.appendChild(calDate);
@@ -82,38 +86,51 @@ function displayDates() {
 
     // dayNumber = calendar.dayBlock.calDate.value
     // console.log(dayNumber)
-
 }
 
 displayDates();
 
-function run (t){
-
-var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
-async function getiss() {
-    const response = await fetch(nflApi);
-    const data = await response.json();
-    const { items } = data;
 
 
-    for (var i = 0; i < items.length; i++) {
-        var team = items[i];
-
-
-        fetch(team.$ref)
-            .then(function (response) {
-                // console.log(team.$ref); //console logs the team links
-                // console.log(response);
-                return response.json();
-            }).then(function (data) {
-                console.log(data); //returns the data from the team links
-            })
-
-
+console.log($('.calendar-date').map(function () {
+    return $(this).attr('id');
+    if (id.textContent == 25) {
+        $(this).attr('class').textContent = "merry xmas";
     }
+    
+}))
+// for (let i = 0; i < $('.calendar-date').attr('id').length; i++) {
+//     console.log($('.calendar-date').attr('id')[i]);
+// }
 
 
-}getiss()
+function run(t) {
+
+    var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
+    async function getiss() {
+        const response = await fetch(nflApi);
+        const data = await response.json();
+        const { items } = data;
+
+
+        for (var i = 0; i < items.length; i++) {
+            var team = items[i];
+
+
+            fetch(team.$ref)
+                .then(function (response) {
+                    // console.log(team.$ref); //console logs the team links
+                    // console.log(response);
+                    return response.json();
+                }).then(function (data) {
+                    console.log(data); //returns the data from the team links
+                })
+
+
+        }
+
+
+    } getiss()
 }
 //getiss()
 
@@ -153,12 +170,12 @@ async function getiss() {
 var Dd = document.querySelector("#Sd");
 var test = document.querySelector(".Sportsdropdown")
 // Listen for any clicks within the img-container div
-Dd.addEventListener("click", function(event) {
-  var element = event.target;
-  console.log(element)
-   
-    var t = element.getAttribute("id");    
-    
-run(t)
-console.log(t)
+Dd.addEventListener("click", function (event) {
+    var element = event.target;
+    console.log(element)
+
+    var t = element.getAttribute("id");
+
+    run(t)
+    console.log(t)
 });
