@@ -33,7 +33,7 @@ li {
 
 .calendar-contain {
   position: relative;
-  left: 0;
+  left: 30;
   right: 0;
   border-radius: 0;
   width: 100%;
@@ -44,11 +44,14 @@ li {
   background-color: #f5f7f6;
   box-shadow: 5px 5px 72px rgba(30, 46, 50, 0.5);
   color: #040605;
+  margin-left: 10rem;
+
 }
-@media screen and (min-width: 55em) {
+@media screen and (min-width: 100em) {
   .calendar-contain {
     margin: auto;
-    top: 5%;
+    width: auto;
+    
   }
 }
 
@@ -125,7 +128,7 @@ li {
   padding: 0 0.5rem;
   text-align: left;
 }
-@media screen and (min-width: 55em) {
+@media screen and (min-width: 50em) {
   .title-bar-year {
     width: 27%;
   }
@@ -408,6 +411,7 @@ li {
   position: relative;
   text-decoration: none;
   transition-duration: 0.5s;
+  
 }
   
 li a {
@@ -436,7 +440,7 @@ ul li ul {
   display: none;
 }
 
-ul li:hover > ul,
+
 ul li:focus-within > ul,
 ul li ul:hover,
 ul li ul:focus {
@@ -448,3 +452,8 @@ ul li ul:focus {
 ul li ul li {
   clear: both;
   width: 100%;}
+  
+  .dropdown {
+max-height:400px;
+   overflow:scroll; 
+  }
