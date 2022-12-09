@@ -33,7 +33,7 @@
 var todayDate = dayjs().format("MMMM DD, YYYY");
 //for comparing and displaying
 var curMonth = dayjs().format('MMMM');
-var curMonthNum = dayjs().format('MM');
+var curMonthNumber = dayjs().format('MM')
 var curDay = dayjs().format('D');
 var curYear = dayjs().format('YYYY');
 var curWeekDay = dayjs().format('dddd');
@@ -48,6 +48,9 @@ var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going t
 var calDate;
 
 var dayNumber;
+var calDate;
+var dataDouble;
+var dataSingle;
 
 var calendar = document.querySelector('#calendar');
 
@@ -69,12 +72,13 @@ function displayDates() {
     for (let i = 1; i <= paddingDays + numOfDays; i++) {
         var dayBlock = document.createElement('div');
         dayBlock.classList.add('calendar-day');
-        var calDate = document.createElement('div');
+        calDate = document.createElement('div');
         calDate.classList.add('calendar-date');
 
         if (i > paddingDays) {
             calDate.textContent = i - paddingDays;
-            calDate.setAttribute('id', curYear + '-' + curMonthNum + '-' + calDate.textContent);
+            calDate.setAttribute('id', curYear + "-" + curMonthNumber + "-" + calDate.textContent);
+
             //add eventlistener to change the aside box view?
         } else {
             dayBlock.classList.add('inactive');
@@ -135,37 +139,38 @@ function run(t) {
 //getiss()
 
 
-// function holidayData() {
-//     var weatherAPI = 'https://calendarific.com/api/v2/holidays?&api_key=0f6f3c056e70ebca75cebdcc5cbbadf546e7c0c1&country=US&year=2022&type=national';
+function holidayData() {
 
-//     fetch(weatherAPI)
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .then(function (data) {
-//             console.log(data)
+    var holidayAPI = 'https://calendarific.com/api/v2/holidays?&api_key=0f6f3c056e70ebca75cebdcc5cbbadf546e7c0c1&country=US&year=2022&type=national';
 
-//             for (var i = 0; i < data.response.holidays.length; i++) {
+    fetch(holidayAPI)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
 
-//                 var calendarMonth = dayjs().format('MM');
-//                 //if holiday month is same as current month
-//                 if (data.response.holidays[i].date.datetime.month == calendarMonth) {
-//                     //pull the date and match with calendar dates
-//                     //pull name and display in calendar
-//                 }
+            for (var i = 0; i < data.response.holidays.length; i++) {
 
-//                 console.log(data.response.holidays[i].date.datetime.month)
+                console.log($(this).attr('id'))
 
+                //if holiday date is same as calendar date, display holiday
+                $('.calendar-date').map(function () {
+                    if (dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D") == $(this).attr('id')) {
+                        console.log("same date")
+                        var calEvent = document.createElement("p");
+                        calDate.appendChild(calEvent);
+                        calEvent.textContent = data.response.holidays[i].name
+                    } else {
+                    };
+                })
 
+            }
+        })
+}
 
-//             }
+holidayData();
 
-//         })
-
-// }
-
-
-//holidayData();
 
 var Dd = document.querySelector("#Sd");
 var test = document.querySelector(".Sportsdropdown")
