@@ -33,6 +33,7 @@
 var todayDate = dayjs().format("MMMM DD, YYYY");
 //for comparing and displaying
 var curMonth = dayjs().format('MMMM');
+var curMonthNumber = dayjs().format('MM')
 var curDay = dayjs().format('D');
 var curYear = dayjs().format('YYYY');
 var curWeekDay = dayjs().format('dddd');
@@ -45,6 +46,9 @@ var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 
 var dayNumber;
+var calDate;
+var dataDouble;
+var dataSingle;
 
 var calendar = document.querySelector('#calendar');
 
@@ -66,11 +70,12 @@ function displayDates() {
     for (let i = 1; i <= paddingDays + numOfDays; i++) {
         var dayBlock = document.createElement('div');
         dayBlock.classList.add('calendar-day');
-        var calDate = document.createElement('div');
+        calDate = document.createElement('div');
         calDate.classList.add('calendar-date');
 
         if (i > paddingDays) {
             calDate.textContent = i - paddingDays; //supposed to add the date numbers... but is not 
+            calDate.setAttribute('id', curYear + "-" + curMonthNumber + "-" + calDate.textContent);
 
             //add eventlistener to change the aside box view?
         } else {
@@ -88,78 +93,79 @@ function displayDates() {
 
 displayDates();
 
-function run (t){
+function run(t) {
 
-var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
-async function getiss() {
-    const response = await fetch(nflApi);
-    const data = await response.json();
-    const { items } = data;
-
-
-    for (var i = 0; i < items.length; i++) {
-        var team = items[i];
+    var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
+    async function getiss() {
+        const response = await fetch(nflApi);
+        const data = await response.json();
+        const { items } = data;
 
 
-        fetch(team.$ref)
-            .then(function (response) {
-                // console.log(team.$ref); //console logs the team links
-                // console.log(response);
-                return response.json();
-            }).then(function (data) {
-                console.log(data); //returns the data from the team links
-            })
+        for (var i = 0; i < items.length; i++) {
+            var team = items[i];
 
 
-    }
+            fetch(team.$ref)
+                .then(function (response) {
+                    // console.log(team.$ref); //console logs the team links
+                    // console.log(response);
+                    return response.json();
+                }).then(function (data) {
+                    console.log(data); //returns the data from the team links
+                })
 
 
-}getiss()
+        }
+
+
+    } getiss()
 }
 //getiss()
 
 
-// function holidayData() {
-//     var weatherAPI = 'https://calendarific.com/api/v2/holidays?&api_key=0f6f3c056e70ebca75cebdcc5cbbadf546e7c0c1&country=US&year=2022&type=national';
+function holidayData() {
 
-//     fetch(weatherAPI)
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .then(function (data) {
-//             console.log(data)
+    var holidayAPI = 'https://calendarific.com/api/v2/holidays?&api_key=0f6f3c056e70ebca75cebdcc5cbbadf546e7c0c1&country=US&year=2022&type=national';
 
-//             for (var i = 0; i < data.response.holidays.length; i++) {
+    fetch(holidayAPI)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
 
-//                 var calendarMonth = dayjs().format('MM');
-//                 //if holiday month is same as current month
-//                 if (data.response.holidays[i].date.datetime.month == calendarMonth) {
-//                     //pull the date and match with calendar dates
-//                     //pull name and display in calendar
-//                 }
+            for (var i = 0; i < data.response.holidays.length; i++) {
 
-//                 console.log(data.response.holidays[i].date.datetime.month)
+                console.log($(this).attr('id'))
 
+                //if holiday date is same as calendar date, display holiday
+                $('.calendar-date').map(function () {
+                    if (dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D") == $(this).attr('id')) {
+                        console.log("same date")
+                        var calEvent = document.createElement("p");
+                        calDate.appendChild(calEvent);
+                        calEvent.textContent = data.response.holidays[i].name
+                    } else {
+                    };
+                })
 
+            }
+        })
+}
 
-//             }
+holidayData();
 
-//         })
-
-// }
-
-
-//holidayData();
 
 var Dd = document.querySelector("#Sd");
 var test = document.querySelector(".Sportsdropdown")
 // Listen for any clicks within the img-container div
-Dd.addEventListener("click", function(event) {
-  var element = event.target;
-  console.log(element)
-   
-    var t = element.getAttribute("id");    
-    
-run(t)
-console.log(t)
+Dd.addEventListener("click", function (event) {
+    var element = event.target;
+    console.log(element)
+
+    var t = element.getAttribute("id");
+
+    run(t)
+    console.log(t)
 });
