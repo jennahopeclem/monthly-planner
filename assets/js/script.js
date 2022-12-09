@@ -29,7 +29,7 @@
 //team 28 Washington Commanders
 //team 29 Carolina Panthers
 //team 30 Jacksonville Jaguars
-
+var c = dayjs().format("YYYY-MM-DD")
 var todayDate = dayjs().format("MMMM DD, YYYY");
 //for comparing and displaying
 var curMonth = dayjs().format('MMMM');
@@ -40,10 +40,10 @@ var curWeekDay = dayjs().format('dddd');
 var weekdays = [0, 1, 2, 3, 4, 5, 6];
 var numOfDays = dayjs().daysInMonth(); // number of days in the month
 var firstDayOfMonth = dayjs().startOf('month').$d;
-var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday too? ex. Thursday, 12/1/2022
+var dateString = firstDayOfMonth.toLocaleDateString();  //how to get the weekday too? ex. Thursday, 12/1/2022
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
-
+var calDate;
 var dayNumber;
 
 var calendar = document.querySelector('#calendar');
@@ -68,6 +68,7 @@ function displayDates() {
         dayBlock.classList.add('calendar-day');
         var calDate = document.createElement('div');
         calDate.classList.add('calendar-date');
+    
 
         if (i > paddingDays) {
             calDate.textContent = i - paddingDays; //supposed to add the date numbers... but is not 
@@ -107,12 +108,31 @@ async function getiss() {
                 // console.log(response);
                 return response.json();
             }).then(function (data) {
-                console.log(data); //returns the data from the team links
+                var a = $("<p1>")
+                var dates = data.date.split("T")[0]
+                a.textContent=dates
+                // console.log(dates)
+                
+                console.log(a)
+if (a.textContent == c) {
+        console.log("mathch")
+        
+    }
+    else{
+        console.log("boooo")
+        console.log(a.textContent)
+        console.log(c)
+    }
+                // $('.calendar-date').append(a.textContent)
+                // console.log(calendar)
+
+                // console.log(data); //returns the data from the team links
             })
 
 
     }
 
+    
 
 }getiss()
 }
