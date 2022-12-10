@@ -37,15 +37,13 @@ var curMonthNumber = dayjs().format('MM')
 var curDay = dayjs().format('D');
 var curYear = dayjs().format('YYYY');
 var curWeekDay = dayjs().format('dddd');
-//vars we may need when formating the month dates
+//vars we need when formating the month dates
 var weekdays = [0, 1, 2, 3, 4, 5, 6];
 var numOfDays = dayjs().daysInMonth(); // number of days in the month
 var firstDayOfMonth = dayjs().startOf('month').$d;
 var dateString = firstDayOfMonth.toLocaleDateString(); //how to get the weekday too? ex. Thursday, 12/1/2022
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
-
-var calDate;
 
 var dayNumber;
 var calDate;
@@ -88,24 +86,9 @@ function displayDates() {
         dayBlock.appendChild(calDate);
     }
 
-    // dayNumber = calendar.dayBlock.calDate.value
-    // console.log(dayNumber)
 }
 
 displayDates();
-
-
-
-console.log($('.calendar-date').map(function () {
-    return $(this).attr('id');
-    if (id.textContent == 25) {
-        $(this).attr('class').textContent = "merry xmas";
-    }
-    
-}))
-// for (let i = 0; i < $('.calendar-date').attr('id').length; i++) {
-//     console.log($('.calendar-date').attr('id')[i]);
-// }
 
 
 function run(t) {
@@ -136,7 +119,6 @@ function run(t) {
 
     } getiss()
 }
-//getiss()
 
 
 function holidayData() {
@@ -151,16 +133,19 @@ function holidayData() {
             console.log(data)
 
             for (var i = 0; i < data.response.holidays.length; i++) {
-
-                console.log($(this).attr('id'))
+                let holidayInfo = {
+                    date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
+                    name: data.response.holidays[i].name
+                }
+                console.log(holidayInfo);
 
                 //if holiday date is same as calendar date, display holiday
                 $('.calendar-date').map(function () {
-                    if (dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D") == $(this).attr('id')) {
-                        console.log("same date")
+                    if (holidayInfo.date == $(this).attr('id')) {
+                        console.log(holidayInfo.date , $(this).attr('id'));
                         var calEvent = document.createElement("p");
-                        calDate.appendChild(calEvent);
-                        calEvent.textContent = data.response.holidays[i].name
+                        document.getElementById($(this).attr('id')).appendChild(calEvent); //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made. 
+                        calEvent.textContent = holidayInfo.name;
                     } else {
                     };
                 })
