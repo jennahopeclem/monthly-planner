@@ -316,7 +316,7 @@ li {
   min-height: 580px;
   height: 100%;
   font-size: 12px;
-  padding: 0.8rem 0 1rem 1rem;
+  padding: 5px;
   background: #f5f7f6;
 }
 @media screen and (min-width: 55em) {
@@ -365,7 +365,7 @@ li {
   flex-flow: column wrap;
   justify-content: space-between;
   width: 100px;
-  height: 100px;
+  height: 125px;
   float: right;
   padding: 5px;
   border:rgba(4, 6, 5, 0.3) solid 1px; /*added so i can see the boxes*/
@@ -387,6 +387,9 @@ li {
 .today { 
   color: #9FD5FF;
 }
+
+
+/* styling of the nfl links */
 a {
   text-decoration: none;
 }
@@ -401,6 +404,7 @@ ul {
   margin: 0;
   padding-left: 0;
 }
+
 .cl
 li {
   color: #fff;

@@ -37,7 +37,7 @@ var curMonthNumber = dayjs().format('MM')
 var curDay = dayjs().format('D');
 var curYear = dayjs().format('YYYY');
 var curWeekDay = dayjs().format('dddd');
-//vars we may need when formating the month dates
+//vars we need when formating the month dates
 var weekdays = [0, 1, 2, 3, 4, 5, 6];
 var numOfDays = dayjs().daysInMonth(); // number of days in the month
 var firstDayOfMonth = dayjs().startOf('month').$d;
@@ -65,7 +65,7 @@ function displayDates() {
 
     //function to compare the date number on the calendar to the current date and add class '.today'
 
-    //how are we going to update the calendar dates???? and making sure it starts on correct weekday???? 
+
     for (let i = 1; i <= paddingDays + numOfDays; i++) {
         dayBlock = document.createElement('div');
         dayBlock.classList.add('calendar-day');
@@ -74,24 +74,22 @@ function displayDates() {
 
 
         if (i > paddingDays) {
-            calDate.textContent = i - paddingDays; //supposed to add the date numbers... but is not 
+            calDate.textContent = i - paddingDays;
             calDate.setAttribute('id', curYear + "-" + curMonthNumber + "-" + calDate.textContent);
 
             //add eventlistener to change the aside box view?
         } else {
             dayBlock.classList.add('inactive');
+            calDate.setAttribute('id', 'n/a')
         }
         calendar.appendChild(dayBlock);
         dayBlock.appendChild(calDate);
-
     }
-
-    // dayNumber = calendar.dayBlock.calDate.value
-    // console.log(dayNumber)
 
 }
 
 displayDates();
+
 
 function run(t) {
 
@@ -136,7 +134,6 @@ function run(t) {
 
     } getiss()
 }
-//getiss()
 
 
 function holidayData() {
@@ -151,19 +148,22 @@ function holidayData() {
             console.log(data)
 
             for (var i = 0; i < data.response.holidays.length; i++) {
+                let holidayInfo = {
+                    date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
+                    name: data.response.holidays[i].name
+                }
+                console.log(holidayInfo);
 
                 //if holiday date is same as calendar date, display holiday
                 $('.calendar-date').map(function () {
-
-                    if (dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D") == $(this).attr('id')) {
-                        console.log ($(this).attr('id'))
-
-                        holidayList.push(data.response.holidays[i].date.iso)
-                        // var calEvent = document.createElement("p");
-                        // calDate.appendChild(calEvent);
-                        // calEvent.textContent = data.response.holidays[i].name
-
-                    } 
+                    if (holidayInfo.date == $(this).attr('id')) {
+                        console.log(holidayInfo.date , $(this).attr('id'));
+                        var calEvent = document.createElement("p");
+                        //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made.
+                        document.getElementById($(this).attr('id')).appendChild(calEvent);
+                        calEvent.textContent = holidayInfo.name;
+                    } else {
+                    };
                 })
 
             }
