@@ -93,49 +93,45 @@ displayDates();
 
 
 function run(t) {
-
     var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
     async function getiss() {
         const response = await fetch(nflApi);
         const data = await response.json();
         const { items } = data;
-
-
         for (var i = 0; i < items.length; i++) {
             var team = items[i];
-
-        fetch(team.$ref)
-            .then(function (response) {
-                // console.log(team.$ref); //console logs the team links
-                // console.log(response);
-                return response.json();
-            }).then(function (data) {
-                var a = $("<p1>")
-                var dates = data.date.split("T")[0]
-                a.textContent=dates
-                // console.log(dates)
-                
-                console.log(a)
-if (a.textContent == c) {
-        console.log("mathch")
-        
-    }
-    else{
-        console.log("boooo")
-        console.log(a.textContent)
-        console.log(c)
-    }
-                // $('.calendar-date').append(a.textContent)
-                // console.log(calendar)
-
-                // console.log(data); //returns the data from the team links
-            })
-
+            fetch(team.$ref)
+                .then(function (response) {
+                    // console.log(team.$ref); //console logs the team links
+                    // console.log(response);
+                    return response.json();
+                }).then(function (data) {
+                    console.log(data);
+                    var a = $("<p1>")
+                    var dates = data.date.split("T")[0]
+                    var times = data.date.split("T")[1].split("Z")[0]
+                    a.textContent = dates
+                    for (var i = 0; i < items.length; i++) {
+                        // let holidayInfo = {
+                        //     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
+                        //     name: data.response.holidays[i].name
+                        // }
+                        // console.log(holidayInfo);
+                        $('.calendar-date').map(function () {
+                            if (a.textContent == $(this).attr('id')) {
+                                console.log(a.textContent, $(this).attr('id'));
+                                var calEvent = document.createElement("p");
+                                document.getElementById($(this).attr('id')).appendChild(calEvent);
+                                calEvent.textContent = times;
+                            } else {
+                            };
+                        })
+                    }
+                }
+                )
         }
-
-    
-
-    } getiss()
+    }
+    getiss()
 }
 
 
