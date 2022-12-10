@@ -109,31 +109,42 @@ function run(t) {
                     // console.log(response);
                     return response.json();
                 }).then(function (data) {
+                    console.log(data);
+
                     var a = $("<p1>")
                     var dates = data.date.split("T")[0]
+                    var times = data.date.split("T")[1].split("Z")[0]
                     a.textContent = dates
-                    // console.log(dates)
 
-                    console.log(a)
-                    if (a.textContent == c) {
-                        console.log("mathch")
+
+                    for (var i = 0; i < items.length; i++) {
+                        // let holidayInfo = {
+                        //     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
+                        //     name: data.response.holidays[i].name
+                        // }
+
+                        // console.log(holidayInfo);
+
+                        $('.calendar-date').map(function () {
+                            if (a.textContent == $(this).attr('id')) {
+                                console.log(a.textContent, $(this).attr('id'));
+                                var calEvent = document.createElement("p");
+                                document.getElementById($(this).attr('id')).appendChild(calEvent);
+                                calEvent.textContent = times;
+                            } else {
+                            };
+                        })
 
                     }
-                    else {
-                        console.log("boooo")
-                        console.log(a.textContent)
-                        console.log(c)
-                    }
-                    // $('.calendar-date').append(a.textContent)
-                    // console.log(calendar)
+                }
 
-                    // console.log(data); //returns the data from the team links
-                })
-
+                )
         }
 
-    } getiss()
+    }
+    getiss()
 }
+
 
 
 function holidayData() {
@@ -145,19 +156,20 @@ function holidayData() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
+            //console.log(data)
 
             for (var i = 0; i < data.response.holidays.length; i++) {
                 let holidayInfo = {
                     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
                     name: data.response.holidays[i].name
                 }
+
                 console.log(holidayInfo);
 
                 //if holiday date is same as calendar date, display holiday
                 $('.calendar-date').map(function () {
                     if (holidayInfo.date == $(this).attr('id')) {
-                        console.log(holidayInfo.date , $(this).attr('id'));
+                        console.log(holidayInfo.date, $(this).attr('id'));
                         var calEvent = document.createElement("p");
                         //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made.
                         document.getElementById($(this).attr('id')).appendChild(calEvent);
@@ -167,24 +179,25 @@ function holidayData() {
                 })
 
             }
-            
+
             for (var i = 0; i < holidayList.length; i++) {
 
                 $('.calendar-date').map(function () {
 
                     if (holidayList[i] == $(this).attr('id')) {
-                        
+
                         var calEvent = document.createElement("p");
                         calDate.appendChild(calEvent);
                         calEvent.textContent = data.response.holidays[i].name
 
-             } })
-            
-            
+                    }
+                })
+
+
             }
-            
-            
-            
+
+
+
         })
 }
 
