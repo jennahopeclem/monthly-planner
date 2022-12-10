@@ -130,7 +130,8 @@ function run(t) {
                                 console.log(a.textContent, $(this).attr('id'));
                                 var calEvent = document.createElement("p");
                                 document.getElementById($(this).attr('id')).appendChild(calEvent);
-                                calEvent.textContent = times;
+                                calEvent.textContent = data.name + " " + times;
+                                console.log(calEvent)
                             } else {
                             };
                         })
