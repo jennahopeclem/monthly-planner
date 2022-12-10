@@ -45,10 +45,9 @@ var dateString = firstDayOfMonth.toLocaleDateString();  //how to get the weekday
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 var calDate;
+var dayBlock
 var dayNumber;
-var calDate;
-var dataDouble;
-var dataSingle;
+var holidayList = []
 
 var calendar = document.querySelector('#calendar');
 
@@ -68,11 +67,11 @@ function displayDates() {
 
     //how are we going to update the calendar dates???? and making sure it starts on correct weekday???? 
     for (let i = 1; i <= paddingDays + numOfDays; i++) {
-        var dayBlock = document.createElement('div');
+        dayBlock = document.createElement('div');
         dayBlock.classList.add('calendar-day');
         calDate = document.createElement('div');
         calDate.classList.add('calendar-date');
-    
+
 
         if (i > paddingDays) {
             calDate.textContent = i - paddingDays; //supposed to add the date numbers... but is not 
@@ -106,36 +105,34 @@ function run(t) {
         for (var i = 0; i < items.length; i++) {
             var team = items[i];
 
-        fetch(team.$ref)
-            .then(function (response) {
-                // console.log(team.$ref); //console logs the team links
-                // console.log(response);
-                return response.json();
-            }).then(function (data) {
-                var a = $("<p1>")
-                var dates = data.date.split("T")[0]
-                a.textContent=dates
-                // console.log(dates)
-                
-                console.log(a)
-if (a.textContent == c) {
-        console.log("mathch")
-        
-    }
-    else{
-        console.log("boooo")
-        console.log(a.textContent)
-        console.log(c)
-    }
-                // $('.calendar-date').append(a.textContent)
-                // console.log(calendar)
+            fetch(team.$ref)
+                .then(function (response) {
+                    // console.log(team.$ref); //console logs the team links
+                    // console.log(response);
+                    return response.json();
+                }).then(function (data) {
+                    var a = $("<p1>")
+                    var dates = data.date.split("T")[0]
+                    a.textContent = dates
+                    // console.log(dates)
 
-                // console.log(data); //returns the data from the team links
-            })
+                    console.log(a)
+                    if (a.textContent == c) {
+                        console.log("mathch")
+
+                    }
+                    else {
+                        console.log("boooo")
+                        console.log(a.textContent)
+                        console.log(c)
+                    }
+                    // $('.calendar-date').append(a.textContent)
+                    // console.log(calendar)
+
+                    // console.log(data); //returns the data from the team links
+                })
 
         }
-
-    
 
     } getiss()
 }
@@ -155,20 +152,39 @@ function holidayData() {
 
             for (var i = 0; i < data.response.holidays.length; i++) {
 
-                console.log($(this).attr('id'))
-
                 //if holiday date is same as calendar date, display holiday
                 $('.calendar-date').map(function () {
+
                     if (dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D") == $(this).attr('id')) {
-                        console.log("same date")
-                        var calEvent = document.createElement("p");
-                        calDate.appendChild(calEvent);
-                        calEvent.textContent = data.response.holidays[i].name
-                    } else {
-                    };
+                        console.log ($(this).attr('id'))
+
+                        holidayList.push(data.response.holidays[i].date.iso)
+                        // var calEvent = document.createElement("p");
+                        // calDate.appendChild(calEvent);
+                        // calEvent.textContent = data.response.holidays[i].name
+
+                    } 
                 })
 
             }
+            
+            for (var i = 0; i < holidayList.length; i++) {
+
+                $('.calendar-date').map(function () {
+
+                    if (holidayList[i] == $(this).attr('id')) {
+                        
+                        var calEvent = document.createElement("p");
+                        calDate.appendChild(calEvent);
+                        calEvent.textContent = data.response.holidays[i].name
+
+             } })
+            
+            
+            }
+            
+            
+            
         })
 }
 
