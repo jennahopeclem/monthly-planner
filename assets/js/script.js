@@ -48,6 +48,7 @@ var dayBlock
 var dayNumber;
 var holidayList = []
 var calendar = document.querySelector('#calendar');
+
 function displayDates() {
     //displays month and year at top of calendar
     var currentMonthYear = document.querySelector('#curr-month-year');
@@ -78,7 +79,7 @@ function displayDates() {
 }
 displayDates();
 function run(t) {
-    var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
+    var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
     async function getiss() {
         const response = await fetch(nflApi);
         const data = await response.json();
@@ -132,6 +133,7 @@ function holidayData() {
                     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
                     name: data.response.holidays[i].name
                 }
+
                 console.log(holidayInfo);
                 //if holiday date is same as calendar date, display holiday
                 $('.calendar-date').map(function () {
@@ -154,6 +156,25 @@ function holidayData() {
                     }
                 })
             }
+
+            for (var i = 0; i < holidayList.length; i++) {
+
+                $('.calendar-date').map(function () {
+
+                    if (holidayList[i] == $(this).attr('id')) {
+
+                        var calEvent = document.createElement("p");
+                        calDate.appendChild(calEvent);
+                        calEvent.textContent = data.response.holidays[i].name
+
+                    }
+                })
+
+
+            }
+
+
+
         })
 }
 holidayData();
