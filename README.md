@@ -1,4 +1,3 @@
-
 ## Description
  [https://jennahopeclem.github.io/monthly-planner/]
  ![Deployed Webpage](/Capturewe.PNG)
@@ -63,4 +62,3 @@
 (email at : azimeznail@gmail.com)
 (email at : jennahopeclem@gmail.com)
 (email at : connorbottone@gmail.com)
-
