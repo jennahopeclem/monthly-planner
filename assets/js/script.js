@@ -1,4 +1,4 @@
-//team 1 Atlanta Falcons
+/d/team 1 Atlanta Falcons
 //team 2 Buffalo Bills
 //team 3 Chicago Bears
 //team 4 Cincinnati Bengals
