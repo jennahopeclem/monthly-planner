@@ -63,7 +63,6 @@ function displayDates() {
 }
 displayDates();
 
-
 async function run(t) {
     var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
 
@@ -85,12 +84,14 @@ async function run(t) {
                         calEvent = document.createElement("p");
                         document.getElementById($(this).attr('id')).appendChild(calEvent);
                         calEvent.textContent = data.name + " " + times;
+                        var currentlyInStorageAtThisTime = localStorage.getItem($(this).attr('id')) || ""
+                        var stringToAdd = currentlyInStorageAtThisTime + "\n" + data.name;
+                        localStorage.setItem($(this).attr('id'), stringToAdd)
                     } else {
                     };
                 })
             }
             )
-
     }
 }
 
@@ -132,12 +133,7 @@ function holidayData() {
 
                     }
                 })
-
-
             }
-
-
-
 
         })
 }
@@ -152,29 +148,22 @@ Dd.addEventListener("click", function (event) {
     //console.log(element)
     var t = element.getAttribute("id");
     run(t)
-    console.log(t)
 
 });  // drop downs arent on clicks they are on changes.
 
-plusSign.addEventListener('click', addTodo);
+//plusSign.addEventListener('click', addTodo);
 
 // function addTodo() {
 //     var addItem = document.querySelectorAll('.add-item');
 //     //addItem.style = 'display: block';//need to figure out how to unhide
 //     console.log(addItem);
-    
+
 // }
-
-
 
 
 $(document).on('click', '.calendar-day', displayDay)
 function displayDay(event) {
     // event.preventDefault();
-    $('.sidebar-list').empty();
-    // sidebarList.innerHTML = "";
-    var whatsTheDay = $(this);
-    console.log(whatsTheDay);
 
     curWeekday.innerHTML = dayjs($(this).children().attr("id")).format("dddd");
     curMonthDay.innerHTML = dayjs($(this).children().attr("id")).format("MMMM D");
@@ -184,22 +173,6 @@ function displayDay(event) {
     dailyList.classList.add("sidebar-list-item");
     sidebarList.appendChild(dailyList);
     dailyList.textContent = $(this)[0].children[0].children[0].textContent || "";
-    // console.log($(this).children().children().innerHTML);
-    // console.log(calEvent);
-
-}
 
 
-//saveTodo.addEventListener('click', saveLocal);
-
-function saveLocal() {
-
-    $('.calendar-date').map(function () {
-        if ($(this).attr('id'), $(this).children().textContent = "") {
-            return
-        } else {
-            localStorage.setItem($(this).attr('id'), sidebarList.children(li).textContent);
-        }
-
-    })
 }
