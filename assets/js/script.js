@@ -1,33 +1,5 @@
-//team 1 Atlanta Falcons
-//team 2 Buffalo Bills
-//team 3 Chicago Bears
-//team 4 Cincinnati Bengals
-//team 5 Cleveland Browns
-//team 6 Dallas Cowboys
-//team 7 Denver Broncos
-//team 8 Detroit Lions
-//team 9 Green Bay Packers
-//team 10 Tennessee Titans
-//team 11 Indianapolis Colts
-//team 12 Kansas City Chiefs
-//team 13 Las Vegas Raiders
-//team 14 Los Angeles Rams
-//team 15 Miami Dolphins
-//team 16 Minnesota Vikings
-//team 17 New England Patriots
-//team 18 New Orleans Saints
-//team 19 New York Giants
-//team 20 New York Jets
-//team 21 Philadelphia Eagles
-//team 22 Arizona Cardinals
-//team 23 Pittsburgh Steelers
-//team 24  Los Angeles Charger
-//team 25 San Francisco 49ers
-//team 26 Seattle Seahawks
-//team 27 Tampa Bay Buccaneers
-//team 28 Washington Commanders
-//team 29 Carolina Panthers
-//team 30 Jacksonville Jaguars
+
+
 var c = dayjs().format("YYYY-MM-DD")
 var todayDate = dayjs().format("MMMM DD, YYYY");
 //for comparing and displaying
@@ -48,6 +20,10 @@ var dayBlock;
 var dayNumber;
 var holidayList = [];
 var calendar = document.querySelector('#calendar');
+var sidebarList = document.querySelector('.sidebar-list');
+var calEvent;
+var plusSign = document.querySelector(".plus-sign");
+var saveTodo = document.querySelector("#save-todo")
 
 function displayDates() {
     //displays month and year at top of calendar
@@ -81,48 +57,43 @@ function displayDates() {
         if (dayjs().format('YYYY-MM-D') == $(this).attr('id')) {
             //console.log(dayjs().format('YYYY-MM-D'), $(this).attr('id'));
             $(this).addClass('today');
-            }
-        })
+
+        }
+    })
+
 }
 
 displayDates();
 
 
-function run(t) {
+async function run(t) {
     var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
-    async function getiss() {
-        const response = await fetch(nflApi);
-        const data = await response.json();
-        const { items } = data;
-        for (var i = 0; i < items.length; i++) {
-            var team = items[i];
-            fetch(team.$ref)
-                .then(function (response) {
-                    // console.log(team.$ref); //console logs the team links
-                    // console.log(response);
-                    return response.json();
-                }).then(function (data) {
-                    //console.log(data);
-                    var a = $("<p1>");
-                    var dates = data.date.split("T")[0];
-                    var times = data.date.split("T")[1].split("Z")[0];
-                    a.textContent = dates;
 
-                    $('.calendar-date').map(function () {
-                        if (a.textContent == $(this).attr('id')) {
-                            console.log(a.textContent, $(this).attr('id'));
-                            var calEvent = document.createElement("p");
-                            document.getElementById($(this).attr('id')).appendChild(calEvent);
-                            calEvent.textContent = data.name + " " + times;
-                            console.log(calEvent)
-                        } else {
-                        };
-                    })
-                }
-                )
-        }
+    const response = await fetch(nflApi);
+    const data = await response.json();
+    const { items } = data;
+    for (var i = 0; i < items.length; i++) {
+        var team = items[i];
+        fetch(team.$ref)
+            .then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                var a = $("<p1>");
+                var dates = data.date.split("T")[0];
+                var times = data.date.split("T")[1].split("Z")[0];
+                a.textContent = dates;
+                $('.calendar-date').map(function () {
+                    if (a.textContent == $(this).attr('id')) {
+                        calEvent = document.createElement("p");
+                        document.getElementById($(this).attr('id')).appendChild(calEvent);
+                        calEvent.textContent = data.name + " " + times;
+                    } else {
+                    };
+                })
+            }
+            )
+
     }
-    getiss()
 }
 
 function holidayData() {
@@ -169,9 +140,10 @@ function holidayData() {
 
 
 
+
         })
 }
-//holidayData();
+// holidayData();
 
 var Dd = document.querySelector("#Sd");
 var test = document.querySelector(".Sportsdropdown")
@@ -182,4 +154,49 @@ Dd.addEventListener("click", function (event) {
     var t = element.getAttribute("id");
     run(t)
     console.log(t)
-});
+
+});  // drop downs arent on clicks they are on changes.
+
+plusSign.addEventListener('click', addTodo);
+function addTodo() {
+
+}
+
+
+
+
+$(document).on('click', '.calendar-day', displayDay)
+function displayDay(event) {
+    // event.preventDefault();
+    $('.sidebar-list').empty();
+    // sidebarList.innerHTML = "";
+    var whatsTheDay = $(this);
+    console.log(whatsTheDay);
+
+    curWeekday.innerHTML = dayjs($(this).children().attr("id")).format("dddd");
+    curMonthDay.innerHTML = dayjs($(this).children().attr("id")).format("MMMM D");
+
+
+    var dailyList = document.createElement("li");
+    dailyList.classList.add("sidebar-list-item");
+    sidebarList.appendChild(dailyList);
+    dailyList.textContent = $(this)[0].children[0].children[0].textContent || "";
+    // console.log($(this).children().children().innerHTML);
+    // console.log(calEvent);
+
+}
+
+
+//saveTodo.addEventListener('click', saveLocal);
+
+function saveLocal() {
+
+    $('.calendar-date').map(function () {
+        if ($(this).attr('id'), $(this).children().textContent = "") {
+            return
+        } else {
+            localStorage.setItem($(this).attr('id'), sidebarList.children(li).textContent);
+        }
+
+    })
+}
