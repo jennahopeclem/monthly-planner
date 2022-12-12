@@ -44,9 +44,9 @@ var dateString = firstDayOfMonth.toLocaleDateString();  //how to get the weekday
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 var calDate;
-var dayBlock
+var dayBlock;
 var dayNumber;
-var holidayList = []
+var holidayList = [];
 var calendar = document.querySelector('#calendar');
 
 function displayDates() {
@@ -76,7 +76,15 @@ function displayDates() {
         calendar.appendChild(dayBlock);
         dayBlock.appendChild(calDate);
     }
+    //applies different color to today's date
+    $('.calendar-date').map(function () {
+        if (dayjs().format('YYYY-MM-D') == $(this).attr('id')) {
+            //console.log(dayjs().format('YYYY-MM-D'), $(this).attr('id'));
+            $(this).addClass('today');
+            }
+        })
 }
+
 displayDates();
 
 
