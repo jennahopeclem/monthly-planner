@@ -138,6 +138,7 @@ function holidayData() {
                     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
                     name: data.response.holidays[i].name
                 }
+
                 //if holiday date is same as calendar date, display holiday
                 $('.calendar-date').map(function () {
                     if (holidayInfo.date == $(this).attr('id')) {
@@ -149,6 +150,25 @@ function holidayData() {
                     }
                 })
             }
+
+            for (var i = 0; i < holidayList.length; i++) {
+
+                $('.calendar-date').map(function () {
+
+                    if (holidayList[i] == $(this).attr('id')) {
+
+                        var calEvent = document.createElement("p");
+                        calDate.appendChild(calEvent);
+                        calEvent.textContent = data.response.holidays[i].name
+
+                    }
+                })
+
+
+            }
+
+
+
         })
 }
 holidayData();
