@@ -1,3 +1,5 @@
+
+
 var c = dayjs().format("YYYY-MM-DD")
 var todayDate = dayjs().format("MMMM DD, YYYY");
 //for comparing and displaying
@@ -21,6 +23,7 @@ var calendar = document.querySelector('#calendar');
 var sidebarList = document.querySelector('.sidebar-list');
 var calEvent;
 var plusSign = document.querySelector(".plus-sign");
+
 
 function displayDates() {
     //displays month and year at top of calendar
@@ -54,8 +57,10 @@ function displayDates() {
         if (dayjs().format('YYYY-MM-D') == $(this).attr('id')) {
             //console.log(dayjs().format('YYYY-MM-D'), $(this).attr('id'));
             $(this).addClass('today');
+
         }
     })
+
 }
 
 displayDates();
@@ -141,6 +146,7 @@ function holidayData() {
 
 
 
+
         })
 }
 // holidayData();
@@ -154,6 +160,7 @@ Dd.addEventListener("click", function (event) {
     var t = element.getAttribute("id");
     run(t)
     console.log(t)
+
 });  // drop downs arent on clicks they are on changes.
 
 plusSign.addEventListener('click', addTodo);
