@@ -52,11 +52,11 @@
  
  
 ## Features
- -Self updating calender.
- -Present date highlighted text.
- -Text area to input messege/events and save button to store text entry
- -Drop down menu  that scrolls with all NFL teams upon click will display team selected upcoming events.
- -All holidays that are present in that month will be automatically inputed into the calender..
+ - Self updating calender.
+ - Present date highlighted text.
+ - Text area to input messege/events and save button to store text entry
+ - Drop down menu  that scrolls with all NFL teams upon click will display team selected upcoming events.
+ - All holidays that are present in that month will be automatically inputed into the calender..
  
 ## Author
 (email at : tranmichelle997@gmail.com)
