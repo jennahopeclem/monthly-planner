@@ -9,10 +9,9 @@ var curDay = dayjs().format('D');
 var curYear = dayjs().format('YYYY');
 var curWeekDay = dayjs().format('dddd');
 //vars we need when formating the month dates
-var weekdays = [0, 1, 2, 3, 4, 5, 6];
-var numOfDays = dayjs().daysInMonth(); // number of days in the month
 var firstDayOfMonth = dayjs().startOf('month').$d;
-var dateString = firstDayOfMonth.toLocaleDateString();  //how to get the weekday too? ex. Thursday, 12/1/2022
+var weekdays = [0, 1, 2, 3, 4, 5, 6]; //used to determine padding days
+var numOfDays = dayjs().daysInMonth(); // number of days in the month
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 var calDate;
@@ -62,7 +61,6 @@ function displayDates() {
     })
 
 }
-
 displayDates();
 
 
@@ -115,17 +113,17 @@ function holidayData() {
                     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
                     name: data.response.holidays[i].name
                 }
-
                 //if holiday date is same as calendar date, display holiday
-                $('.calendar-date').map(function () {
-                    if (holidayInfo.date == $(this).attr('id')) {
-                        // console.log(holidayInfo.date, $(this).attr('id'));
+                var dateElements = document.querySelectorAll('.calendar-date');
+                dateElements.forEach(function (dateElement) {
+                    if (holidayInfo.date == dateElement.id) {
+                        // console.log(holidayInfo.date, dateElement.id);
                         var calEvent = document.createElement("p");
                         //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made.
-                        document.getElementById($(this).attr('id')).appendChild(calEvent);
+                        document.getElementById(dateElement.id).appendChild(calEvent);
                         calEvent.textContent = holidayInfo.name;
                     }
-                })
+                });
             }
 
             for (var i = 0; i < holidayList.length; i++) {
@@ -154,9 +152,10 @@ function holidayData() {
 var Dd = document.querySelector("#Sd");
 var test = document.querySelector(".Sportsdropdown")
 // Listen for any clicks within the img-container div
+
 Dd.addEventListener("click", function (event) {
     var element = event.target;
-    console.log(element)
+    //console.log(element)
     var t = element.getAttribute("id");
     run(t)
     console.log(t)
@@ -164,9 +163,13 @@ Dd.addEventListener("click", function (event) {
 });  // drop downs arent on clicks they are on changes.
 
 plusSign.addEventListener('click', addTodo);
-function addTodo() {
 
-}
+// function addTodo() {
+//     var addItem = document.querySelectorAll('.add-item');
+//     //addItem.style = 'display: block';//need to figure out how to unhide
+//     console.log(addItem);
+    
+// }
 
 
 
