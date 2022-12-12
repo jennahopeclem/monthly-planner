@@ -97,6 +97,7 @@ async function run(t) {
 
 function holidayData() {
     var holidayAPI = 'https://calendarific.com/api/v2/holidays?&api_key=a650bf2c0b0cdf1c919ef9a9cef5fba2a18c8ef1&country=US&year=2022&type=national';
+   
     fetch(holidayAPI)
         .then(function (response) {
             return response.json();
