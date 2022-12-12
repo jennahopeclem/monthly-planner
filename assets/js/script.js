@@ -81,7 +81,7 @@ displayDates();
 
 
 function run(t) {
-    var nflApi = `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
+    var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
     async function getiss() {
         const response = await fetch(nflApi);
         const data = await response.json();
