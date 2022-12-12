@@ -223,6 +223,7 @@ li {
   width: 100%;
   margin: 0 auto;
   float: none;
+  height: 710px;
   background: linear-gradient(120deg, #eff3f3, #e1e7e8);
   padding-bottom: 0.7rem;
 }
@@ -258,6 +259,12 @@ li {
   opacity: 0.8;
 }
 
+/* cursor changes to grab when hovering over the aside box options */
+.sidebar-nav-item:hover {
+  cursor: grab;
+}
+
+
 .sidebar-list {
   list-style: none;
   margin: 0;
@@ -266,11 +273,12 @@ li {
 }
 
 .sidebar-list-item {
-  margin: 1.2rem 0;
+  margin: 0;
   color: #2d4338;
   font-weight: 100;
   font-size: 1rem;
   padding-left: 15px;
+  height: 35px;
 }
 
 .list-item-time {
@@ -295,7 +303,7 @@ li {
   font-weight: bold;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0rem;
   margin-top: 1rem;
 }
 .sidebar-heading span {
