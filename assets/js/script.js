@@ -77,7 +77,7 @@ function displayDates() {
     }
     //applies different color to today's date
     var dateElements = document.querySelectorAll('.calendar-date');
-    dateElements.forEach(function(dateElement) {
+    dateElements.forEach(function (dateElement) {
         if (dateElement.id == dayjs().format('YYYY-MM-D')) {
             dateElement.classList.add('today');
         }
@@ -107,13 +107,13 @@ function run(t) {
                     a.textContent = dates;
 
                     var dateElements = document.querySelectorAll('.calendar-date');
-                    dateElements.forEach(function(dateElement) {
+                    dateElements.forEach(function (dateElement) {
                         if (a.textContent == dateElement.id) {
-                            console.log(a.textContent, dateElement.id);
+                            //console.log(a.textContent, dateElement.id);
                             var calEvent = document.createElement("p");
                             document.getElementById(dateElement.id).appendChild(calEvent);
                             calEvent.textContent = data.name + " " + times;
-                            console.log(calEvent);
+                            //console.log(calEvent);
                         } else {
                         }
                     });
@@ -136,20 +136,20 @@ function holidayData() {
                     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
                     name: data.response.holidays[i].name
                 }
-                 //if holiday date is same as calendar date, display holiday
-                 var dateElements = document.querySelectorAll('.calendar-date');
-                 dateElements.forEach(function(dateElement) {
-                     if (holidayInfo.date == dateElement.id) {
-                         // console.log(holidayInfo.date, dateElement.id);
-                         var calEvent = document.createElement("p");
-                         //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made.
-                         document.getElementById(dateElement.id).appendChild(calEvent);
-                         calEvent.textContent = holidayInfo.name;
-                     }
-                 });
-             }
-         });
- }
+                //if holiday date is same as calendar date, display holiday
+                var dateElements = document.querySelectorAll('.calendar-date');
+                dateElements.forEach(function (dateElement) {
+                    if (holidayInfo.date == dateElement.id) {
+                        // console.log(holidayInfo.date, dateElement.id);
+                        var calEvent = document.createElement("p");
+                        //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made.
+                        document.getElementById(dateElement.id).appendChild(calEvent);
+                        calEvent.textContent = holidayInfo.name;
+                    }
+                });
+            }
+        });
+}
 //holidayData();
 
 var Dd = document.querySelector("#Sd");
@@ -158,8 +158,34 @@ var test = document.querySelector(".Sportsdropdown")
 
 Dd.addEventListener("click", function (event) {
     var element = event.target;
-    console.log(element)
+    //console.log(element)
     var t = element.getAttribute("id");
     run(t)
-    console.log(t)
+    //console.log(t)
 });
+
+$(document).on('click', '.calendar-day', displayDay);
+function displayDay(event) {
+    // event.preventDefault();
+    //$('.sidebar-list').empty();
+
+    curWeekday.innerHTML = dayjs($(this).children().attr('id')).format('dddd');
+    curMonthDay.innerHTML = dayjs($(this).children().attr('id')).format('MMMM D');
+
+    if ($(this).children().children().innerContent == '') {
+        console.log('cool');
+    } else {
+        var whatsInTheBox = $(this)[0].children[0].children[0].textContent //|| "";
+        console.log(whatsInTheBox); // it is telling us what game is in that date box, but it is not displaying on sidebar
+        var whatsTheDay = $(this); //giving us the each date's block
+        console.log(whatsTheDay);
+
+        var dailyList = document.createElement('li');
+        dailyList.textContent = whatsInTheBox;
+
+        $('.sidebar-list').appendChild(dailyList);
+        // dailyList.classList.add('sidebar-list-item');
+
+    }
+}
+
