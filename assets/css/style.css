@@ -15,6 +15,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", sans-serif;
   background-image: linear-gradient(45deg, #ADDBFF 0%, #9FD5FF 100%);
 }
+
 @media screen and (min-width: 55em) {
   body {
     height: 100vh;
@@ -47,11 +48,12 @@ li {
   margin-left: 10rem;
 
 }
+
 @media screen and (min-width: 100em) {
   .calendar-contain {
     margin: auto;
     width: auto;
-    
+
   }
 }
 
@@ -64,6 +66,7 @@ li {
   padding: 0.5rem;
   margin-bottom: 0;
 }
+
 .title-bar:after {
   display: table;
   clear: both;
@@ -86,6 +89,7 @@ li {
   cursor: pointer;
   background: none;
 }
+
 .title-bar-options:focus {
   outline: none;
 }
@@ -102,7 +106,9 @@ li {
   height: 1px;
   background: #040605;
 }
-.options-lines:before, .options-lines:after {
+
+.options-lines:before,
+.options-lines:after {
   position: absolute;
   display: block;
   left: 0;
@@ -111,9 +117,11 @@ li {
   background-color: #040605;
   content: "";
 }
+
 .options-lines:before {
   top: -5px;
 }
+
 .options-lines:after {
   bottom: -5px;
 }
@@ -128,6 +136,7 @@ li {
   padding: 0 0.5rem;
   text-align: left;
 }
+
 @media screen and (min-width: 50em) {
   .title-bar-year {
     width: 27%;
@@ -143,11 +152,13 @@ li {
   padding: 0 0.5rem;
   text-align: left;
 }
+
 @media screen and (min-width: 55em) {
   .title-bar-month {
     width: 12%;
   }
 }
+
 .title-bar-month:after {
   content: "";
   display: inline;
@@ -170,7 +181,9 @@ li {
   width: 34px;
   height: 34px;
 }
-.title-bar-minimize:before, .title-bar-minimize:after,
+
+.title-bar-minimize:before,
+.title-bar-minimize:after,
 .title-bar-maximize:before,
 .title-bar-maximize:after,
 .title-bar-close:before,
@@ -193,7 +206,9 @@ li {
   float: right;
   width: auto;
 }
-.title-bar .title-bar-controls:before, .title-bar .title-bar-controls:after {
+
+.title-bar .title-bar-controls:before,
+.title-bar .title-bar-controls:after {
   content: none;
 }
 
@@ -226,6 +241,7 @@ li {
   background: linear-gradient(120deg, #eff3f3, #e1e7e8);
   padding-bottom: 0.7rem;
 }
+
 @media screen and (min-width: 55em) {
   .calendar-sidebar {
     position: absolute;
@@ -284,6 +300,7 @@ li {
   display: inline-block;
   width: 60px;
 }
+
 @media screen and (min-width: 55em) {
   .list-item-time {
     margin-right: 2rem;
@@ -293,6 +310,7 @@ li {
 .sidebar-list-item-complete {
   color: rgba(4, 6, 5, 0.3);
 }
+
 .sidebar-list-item-complete .list-item-time {
   color: rgba(4, 6, 5, 0.3);
 }
@@ -305,6 +323,7 @@ li {
   margin-bottom: 0rem;
   margin-top: 1rem;
 }
+
 .sidebar-heading span {
   font-weight: 300;
 }
@@ -326,6 +345,7 @@ li {
   padding: 5px;
   background: #f5f7f6;
 }
+
 @media screen and (min-width: 55em) {
   .calendar-day {
     width: 70%;
@@ -367,6 +387,7 @@ li {
   padding-bottom: 7px;
   padding-left: 7px;
 }
+
 .calendar-day {
   display: flex;
   flex-flow: column wrap;
@@ -375,7 +396,8 @@ li {
   height: 125px;
   float: right;
   padding: 5px;
-  border:rgba(4, 6, 5, 0.3) solid 1px; /*added so i can see the boxes*/
+  border: rgba(4, 6, 5, 0.3) solid 1px;
+  /*added so i can see the boxes*/
 }
 
 .calendar-date {
@@ -391,7 +413,7 @@ li {
 }
 
 /* this style class is only to be applied to the current day */
-.today { 
+.today {
   color: #9FD5FF;
 }
 
@@ -412,6 +434,7 @@ ul {
   padding-left: 0;
 }
 
+
 .cl
 li {
   color: #fff;
@@ -422,9 +445,9 @@ li {
   position: relative;
   text-decoration: none;
   transition-duration: 0.5s;
-  
+
 }
-  
+
 li a {
   color: #fff;
 }
@@ -440,7 +463,7 @@ li:focus-within a {
 }
 
 ul li ul {
-  
+
   visibility: hidden;
   opacity: 0;
   min-width: 5rem;
@@ -452,7 +475,7 @@ ul li ul {
 }
 
 
-ul li:focus-within > ul,
+ul li:focus-within>ul,
 ul li ul:hover,
 ul li ul:focus {
   visibility: visible;
@@ -462,9 +485,10 @@ ul li ul:focus {
 
 ul li ul li {
   clear: both;
-  width: 100%;}
-  
-  .dropdown {
-max-height:400px;
-   overflow:scroll; 
-  }
+  width: 100%;
+}
+
+.dropdown {
+  max-height: 400px;
+  overflow: scroll;
+}
