@@ -452,8 +452,8 @@ li a {
   color: #fff;
 }
 
-li:hover,
-li:focus-within {
+.Sportsdropdown:hover,
+.Sportsdropdown:focus-within {
   background: red;
   cursor: pointer;
 }
@@ -477,7 +477,7 @@ ul li ul {
 
 ul li:focus-within>ul,
 ul li ul:hover,
-ul li ul:focus {
+.dropdown li .dropdown:focus {
   visibility: visible;
   opacity: 1;
   display: block
