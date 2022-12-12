@@ -355,8 +355,8 @@ nav.title-bar {
 
 .calendar-top-bar {
   display: flex;
-  flex: 32px 0 0;
-  width: 715px;
+  flex: 40px 0 0;
+  width: 1015px;
   float: right;
 }
 
