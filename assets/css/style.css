@@ -274,6 +274,12 @@ li {
   opacity: 0.8;
 }
 
+/* cursor changes to grab when hovering over the aside box options */
+.sidebar-nav-item:hover {
+  cursor: grab;
+}
+
+
 .sidebar-list {
   list-style: none;
   margin: 0;
@@ -282,11 +288,12 @@ li {
 }
 
 .sidebar-list-item {
-  margin: 1.2rem 0;
+  margin: 0;
   color: #2d4338;
   font-weight: 100;
   font-size: 1rem;
   padding-left: 15px;
+  height: 35px;
 }
 
 .list-item-time {
@@ -313,7 +320,7 @@ li {
   font-weight: bold;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0rem;
   margin-top: 1rem;
 }
 
@@ -335,7 +342,7 @@ li {
   min-height: 580px;
   height: 100%;
   font-size: 12px;
-  padding: 0.8rem 0 1rem 1rem;
+  padding: 5px;
   background: #f5f7f6;
 }
 
@@ -386,7 +393,7 @@ li {
   flex-flow: column wrap;
   justify-content: space-between;
   width: 100px;
-  height: 100px;
+  height: 125px;
   float: right;
   padding: 5px;
   border: rgba(4, 6, 5, 0.3) solid 1px;
@@ -410,6 +417,8 @@ li {
   color: #9FD5FF;
 }
 
+
+/* styling of the nfl links */
 a {
   text-decoration: none;
 }
