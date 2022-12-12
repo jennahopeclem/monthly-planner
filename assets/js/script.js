@@ -161,9 +161,6 @@ function addTodo() {
 
 }
 
-
-
-
 $(document).on('click', '.calendar-day', displayDay)
 function displayDay(event) {
     // event.preventDefault();
