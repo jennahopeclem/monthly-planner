@@ -1,4 +1,4 @@
-/d/team 1 Atlanta Falcons
+//team 1 Atlanta Falcons
 //team 2 Buffalo Bills
 //team 3 Chicago Bears
 //team 4 Cincinnati Bengals
@@ -48,6 +48,7 @@ var dayBlock;
 var dayNumber;
 var holidayList = [];
 var calendar = document.querySelector('#calendar');
+var sidebar-list = s
 
 function displayDates() {
     //displays month and year at top of calendar
@@ -89,6 +90,7 @@ displayDates();
 
 
 function run(t) {
+    calEvent
     var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
     async function getiss() {
         const response = await fetch(nflApi);
@@ -127,6 +129,7 @@ function run(t) {
 
 function holidayData() {
     var holidayAPI = 'https://calendarific.com/api/v2/holidays?&api_key=a650bf2c0b0cdf1c919ef9a9cef5fba2a18c8ef1&country=US&year=2022&type=national';
+   
     fetch(holidayAPI)
         .then(function (response) {
             return response.json();
@@ -183,3 +186,22 @@ Dd.addEventListener("click", function (event) {
     run(t)
     console.log(t)
 });
+
+function displayDay(event) {
+    // event.preventDefault();
+    $(‘.sidebar-list’).empty();
+    // sidebarList.innerHTML = “”;
+    var whatsInTheBox = $(this)[0].children[0].children[0].textContent || “”;
+    console.log(whatsInTheBox)
+    var whatsTheDay = $(this);
+    console.log(whatsTheDay);
+    curWeekday.innerHTML = dayjs($(this)[0].children[0].getAttribute(“id”)).format(“dddd”);
+    curMonthDay.innerHTML = dayjs($(this).children().attr(“id”)).format(“MMMM D”);
+    var dailyList = document.createElement(“li”);
+    dailyList.classList.add(“sidebar-list-item”);
+    sidebarList.appendChild(dailyList);
+    dailyList.textContent = whatsInTheBox;
+    // console.log($(this).children().children().innerHTML);
+    // console.log(calEvent);
+
+
