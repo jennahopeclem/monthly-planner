@@ -163,9 +163,13 @@ Dd.addEventListener("click", function (event) {
 });  // drop downs arent on clicks they are on changes.
 
 plusSign.addEventListener('click', addTodo);
-function addTodo() {
 
-}
+// function addTodo() {
+//     var addItem = document.querySelectorAll('.add-item');
+//     //addItem.style = 'display: block';//need to figure out how to unhide
+//     console.log(addItem);
+    
+// }
 
 
 
