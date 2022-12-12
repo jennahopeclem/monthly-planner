@@ -37,10 +37,9 @@ var curDay = dayjs().format('D');
 var curYear = dayjs().format('YYYY');
 var curWeekDay = dayjs().format('dddd');
 //vars we need when formating the month dates
-var weekdays = [0, 1, 2, 3, 4, 5, 6];
-var numOfDays = dayjs().daysInMonth(); // number of days in the month
 var firstDayOfMonth = dayjs().startOf('month').$d;
-var dateString = firstDayOfMonth.toLocaleDateString();  //how to get the weekday too? ex. Thursday, 12/1/2022
+var weekdays = [0, 1, 2, 3, 4, 5, 6]; //used to determine padding days
+var numOfDays = dayjs().daysInMonth(); // number of days in the month
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
 var calDate;
@@ -77,14 +76,13 @@ function displayDates() {
         dayBlock.appendChild(calDate);
     }
     //applies different color to today's date
-    $('.calendar-date').map(function () {
-        if (dayjs().format('YYYY-MM-D') == $(this).attr('id')) {
-            //console.log(dayjs().format('YYYY-MM-D'), $(this).attr('id'));
-            $(this).addClass('today');
-            }
-        })
+    var dateElements = document.querySelectorAll('.calendar-date');
+    dateElements.forEach(function(dateElement) {
+        if (dateElement.id == dayjs().format('YYYY-MM-D')) {
+            dateElement.classList.add('today');
+        }
+    });
 }
-
 displayDates();
 
 
@@ -108,18 +106,18 @@ function run(t) {
                     var times = data.date.split("T")[1].split("Z")[0];
                     a.textContent = dates;
 
-                    $('.calendar-date').map(function () {
-                        if (a.textContent == $(this).attr('id')) {
-                            console.log(a.textContent, $(this).attr('id'));
+                    var dateElements = document.querySelectorAll('.calendar-date');
+                    dateElements.forEach(function(dateElement) {
+                        if (a.textContent == dateElement.id) {
+                            console.log(a.textContent, dateElement.id);
                             var calEvent = document.createElement("p");
-                            document.getElementById($(this).attr('id')).appendChild(calEvent);
+                            document.getElementById(dateElement.id).appendChild(calEvent);
                             calEvent.textContent = data.name + " " + times;
-                            console.log(calEvent)
+                            console.log(calEvent);
                         } else {
-                        };
-                    })
-                }
-                )
+                        }
+                    });
+                });
         }
     }
     getiss()
@@ -138,24 +136,26 @@ function holidayData() {
                     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
                     name: data.response.holidays[i].name
                 }
-                //if holiday date is same as calendar date, display holiday
-                $('.calendar-date').map(function () {
-                    if (holidayInfo.date == $(this).attr('id')) {
-                        // console.log(holidayInfo.date, $(this).attr('id'));
-                        var calEvent = document.createElement("p");
-                        //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made.
-                        document.getElementById($(this).attr('id')).appendChild(calEvent);
-                        calEvent.textContent = holidayInfo.name;
-                    }
-                })
-            }
-        })
-}
-holidayData();
+                 //if holiday date is same as calendar date, display holiday
+                 var dateElements = document.querySelectorAll('.calendar-date');
+                 dateElements.forEach(function(dateElement) {
+                     if (holidayInfo.date == dateElement.id) {
+                         // console.log(holidayInfo.date, dateElement.id);
+                         var calEvent = document.createElement("p");
+                         //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made.
+                         document.getElementById(dateElement.id).appendChild(calEvent);
+                         calEvent.textContent = holidayInfo.name;
+                     }
+                 });
+             }
+         });
+ }
+//holidayData();
 
 var Dd = document.querySelector("#Sd");
 var test = document.querySelector(".Sportsdropdown")
 // Listen for any clicks within the img-container div
+
 Dd.addEventListener("click", function (event) {
     var element = event.target;
     console.log(element)
