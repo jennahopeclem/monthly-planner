@@ -23,6 +23,7 @@ var sidebarList = document.querySelector('.sidebar-list');
 var calEvent;
 var plusSign = document.querySelector(".plus-sign");
 var saveTodo = document.querySelector("#save-todo")
+var additemEl = document.querySelector(".add-item")
 
 function displayDates() {
     //displays month and year at top of calendar
@@ -165,7 +166,7 @@ Dd.addEventListener("click", function (event) {
 $(document).on('click', '.calendar-day', displayDay)
 function displayDay(event) {
     // event.preventDefault();
-
+    $('.sidebar-list').empty();
     curWeekday.innerHTML = dayjs($(this).children().attr("id")).format("dddd");
     curMonthDay.innerHTML = dayjs($(this).children().attr("id")).format("MMMM D");
 
@@ -175,5 +176,24 @@ function displayDay(event) {
     sidebarList.appendChild(dailyList);
     dailyList.textContent = $(this)[0].children[0].children[0].textContent || "";
 
+    
+     
+
 
 }
+
+
+// saveTodo.addEventListener("click", function (event) {
+//      var todoTime = document.querySelector("#todo-time")
+//      var todoItem = document.querySelector("#todo-item")
+//         localStorage.setItem(Item ,todoTime.innerHTML);
+//         localStorage.setItem(( $()+"item",todoItem.innerHTML)
+
+    
+       
+
+    
+    
+
+
+// }); 
