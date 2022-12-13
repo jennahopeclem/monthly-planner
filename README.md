@@ -5,7 +5,7 @@
 - This webpage is designed to organize your upcoming events.
 - The user can find upcoming holidays aswell as football games by team name .
 - The user can enter there own event plans and save them to the calender.
-- The calender self updates to highlight present day aswell as chnage dates and days to corespond with present month.
+- The calender self updates to highlight present day aswell as chnage dates and days to correspond with present month.
 
  
 
@@ -36,7 +36,7 @@
 - This website provides users with a real time calender.
 - The calender will auto adjust its weekdays and numbers to the proper position based on the current month.
 - When the page is loaded the user can immediately see the present date and time.
-- The user will be displayed any holidays that fall within that month on its corisponding day to the calender.
+- The user will be displayed any holidays that fall within that month on its corresponding day to the calender.
 - The user is presented with a drop down menu that features all NFL teams.
 - When a specific NFL team is clicked , the calender will display all upcoming games tot the calander on the date they fall in with  the time and match-up.
 - The user can click on the specific day they want to add an event to.
@@ -44,7 +44,7 @@
 - This feild will appear on the left hand side of the calender.
 - After the user has input there message by clicking the save button it will be stored onto there calender.
 
- 
+ ![screenshot of calendar](assets/images/screenshot.png)
  
  
  

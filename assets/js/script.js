@@ -23,7 +23,10 @@ var sidebarList = document.querySelector('.sidebar-list');
 var calEvent;
 var plusSign = document.querySelector(".plus-sign");
 var saveTodo = document.querySelector("#save-todo")
-var additemEl = document.querySelector(".add-item")
+var curMonthDay = document.querySelector('#curMonthDay')
+var sideDate;
+var todoItem = document.querySelector("#todo-item");
+var todoItemArray = [];
 
 function displayDates() {
     //displays month and year at top of calendar
@@ -33,7 +36,7 @@ function displayDates() {
     var todaysWeekday = document.querySelector('#curWeekday');
     todaysWeekday.textContent = curWeekDay;
     //displays todays date and month into box on side of calendar
-    var curMonthDay = document.querySelector('#curMonthDay');
+    //var curMonthDay = document.querySelector('#curMonthDay');
     curMonthDay.textContent = curMonth + ' ' + curDay;
     //function to compare the date number on the calendar to the current date and add class '.today'
     for (let i = 1; i <= paddingDays + numOfDays; i++) {
@@ -63,6 +66,18 @@ function displayDates() {
 
 }
 displayDates();
+
+function loadLocalStorage (){
+    sideDate = curYear + "-" + dayjs(curMonthDay.textContent).format("MM-DD")
+    todoItemEl = document.createElement("p");
+    todoItemEl.textContent = todoItem.value
+
+    document.getElementById(sideDate).appendChild(todoItemEl)
+    todoItemEl.textContent = localStorage.getItem(sideDate)
+}
+
+loadLocalStorage()
+
 
 async function run(t) {
     var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
@@ -104,7 +119,6 @@ function holidayData() {
             return response.json();
         })
         .then(function (data) {
-            //console.log(data)
             for (var i = 0; i < data.response.holidays.length; i++) {
                 let holidayInfo = {
                     date: dayjs(data.response.holidays[i].date.iso).format("YYYY-MM-D"),
@@ -139,7 +153,7 @@ function holidayData() {
 
         })
 }
-// holidayData();
+holidayData();
 
 var Dd = document.querySelector("#Sd");
 var test = document.querySelector(".Sportsdropdown")
@@ -147,26 +161,16 @@ var test = document.querySelector(".Sportsdropdown")
 
 Dd.addEventListener("click", function (event) {
     var element = event.target;
-    //console.log(element)
     var t = element.getAttribute("id");
     run(t)
 
 });  // drop downs arent on clicks they are on changes.
 
-//plusSign.addEventListener('click', addTodo);
-
-// function addTodo() {
-//     var addItem = document.querySelectorAll('.add-item');
-//     //addItem.style = 'display: block';//need to figure out how to unhide
-//     console.log(addItem);
-
-// }
-
-
 $(document).on('click', '.calendar-day', displayDay)
 function displayDay(event) {
     // event.preventDefault();
     $('.sidebar-list').empty();
+
     curWeekday.innerHTML = dayjs($(this).children().attr("id")).format("dddd");
     curMonthDay.innerHTML = dayjs($(this).children().attr("id")).format("MMMM D");
 
@@ -176,8 +180,26 @@ function displayDay(event) {
     sidebarList.appendChild(dailyList);
     dailyList.textContent = $(this)[0].children[0].children[0].textContent || "";
 
-    
-     
+
+}
+
+
+saveTodo.addEventListener("click", saveEvent)
+
+function saveEvent () {
+    console.log(curYear + "-" + dayjs(curMonthDay.textContent).format("MM-DD"))
+    sideDate = curYear + "-" + dayjs(curMonthDay.textContent).format("MM-DD")
+
+
+    console.log(todoItem)
+    todoItemEl = document.createElement("p");
+    todoItemEl.textContent = todoItem.value
+
+    document.getElementById(sideDate).appendChild(todoItemEl)
+
+    localStorage.setItem(sideDate, todoItemArray)
+    todoItemArray.push(todoItem.value)
+
 
 
 }
