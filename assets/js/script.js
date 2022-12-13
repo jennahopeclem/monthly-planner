@@ -103,7 +103,7 @@ function displayDay(event) {
 }
 
 async function run(team) {
-    var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${team}/events?lang=en&region=us`
+    var nflApi = `https://cors-anywhere/https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${team}/events?lang=en&region=us`
 
     const response = await fetch(nflApi);
     const data = await response.json();
