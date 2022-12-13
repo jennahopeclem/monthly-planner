@@ -58,39 +58,14 @@
         <!-- top navigation bar -->
         <nav class="title-bar">
 
-            <!-- commented out to make easier, can readd  later if we get the MVP done -->
-            <!-- options button on left top -->
-            <!--<button class="title-bar-options">
-                !!!toggle menu????????
-                 <span class="options-lines">Toggle Menu</span> -->
-            <!-- </button>  -->
-
             <span class="title-bar-year" id="curr-month-year">
-                <!-- !!!add date through javascript -->
                 month year
             </span>
-
-
-
-            <!-- I think we should delete this bc a lotttt of work, maybe display current month and year instead? -->
-            <!-- <span class="title-bar-month">
-                Month
-            </span> --> -->
-            <!-- !!! these don't work. make them work or delete? -->
-            <!-- <div class="title-bar-controls">
-                <div class="title-bar-minimize"></div>
-                <div class="title-bar-maximize"></div>
-                <div class="title-bar-close"></div>
-            </div> -->
-
-
-
 
             <!-- the daily view on the left -->
             <aside class="calendar-sidebar">
                 <section class="sidebar-nav">
                     <!-- Icons by Icons8 -->
-                    <!-- !!! add where the icons are from in the readme -->
                     <img class="icon icons8-Plus-Math sidebar-nav-item plus-sign" width="22px" height="22px"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAWUlEQVRYR+2WMQoAIAgA9f+PrsWmEMQSEa7Z8rzEUmle2pxfABhvYFkPpQtJb7TEAGAAAxgoM3AO/v1YXoPPm4TtANHKy64AAAxgAANjDERB3bjXXzEA8w1s3k4WIU0YaEoAAAAASUVORK5CYII=">
                     <img class="icon icons8-Up sidebar-nav-item prev-day" width="22px" height="22px"
@@ -98,37 +73,24 @@
                     <img class="icon icons8-Down sidebar-nav-item next-day" width="22px" height="22px"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA4UlEQVRYR+2WgQnCMBBFXzdwBSdwBUfRyXQER3EUN1AOEgnxLrkkhYCkUFpI7/+Xf1fajcnHNtmfBTCawDu0sFunuzAYL4CVwEpgJbAS+P8EDsAZeBj/DbUELsAznKpE7WMkxSfgCtwVhRKAmN+AF3AM1x+JGkAUkUINwgKo1X1BagDyYElMA3Cbi7gHoASRAzSZtwBYEClAs3krgAYhQxbnI73XBrbrLdCK0p3m69bbYv79e2cgF9Agms17WpCCdPU830lvAlFHIORw93xvALO33oXRBLw+uw/hsHEUmJ7ABzErNiGyzfJcAAAAAElFTkSuQmCC">
 
-
                 </section>
 
-
-
-                <!-- !!! add current date with dayjs -->
+                <!--display current current month and day-->
                 <h2 class="sidebar-heading">
                     <span id="curWeekday" class="sidebar-heading">todays weekday</span>
                     <!--display current weekday-->
                     <br>
                     <span id="curMonthDay" class="sidebar-heading">todays m&d</span>
                 </h2>
-                <!--display current current month and day-->
+                <p class="add-item">
+                    <input id="todo-item" type="text" placeholder="Meeting">
+                    <button id="save-todo">Save</button>
+                </p>
+                
                 <!-- list for today's events -->
                 <ul class="sidebar-list" >
-                    <li class="add-item">
-                        <input id="todo-item" type="text" placeholder="Meeting">
-                        <button id="save-todo">Save</button>
-                    </li>
-                    <!-- what if we have a text box for each hour and save it to local storage like the worksched challenge?? -->
-                    <!-- <li class="sidebar-list-item sidebar-list-item-complete"><span class="list-item-time">8.30</span> Team
-
-                    Meeting</li>
-                <li class="sidebar-list-item sidebar-list-item-complete"><span class="list-item-time">10.00</span> Lunch
-                    with Sasha</li>
-                <li class="sidebar-list-item"><span class="list-item-time">2.30</span> Design Review</li>
-
-                <li class="sidebar-list-item"><span class="list-item-time">4.00</span> Get Groceries</li> -->
                 </ul>
             </aside>
-
 
             <div id="container">
                 <div class="calendar-top-bar" id="weekdays">
@@ -144,8 +106,6 @@
                 <div id="calendar">
 
                 </div>
-
-
 
     </main>
 

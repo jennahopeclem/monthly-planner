@@ -1,41 +1,57 @@
 
-
 var c = dayjs().format("YYYY-MM-DD")
 var todayDate = dayjs().format("MMMM DD, YYYY");
+var calDate;
+var dayBlock;
+var dayNumber;
+var holidayList = [];
+var calEvent;
+var sideDate;
+var todoItemArray = [];
+
 //for comparing and displaying
 var curMonth = dayjs().format('MMMM');
 var curMonthNumber = dayjs().format('MM')
 var curDay = dayjs().format('D');
 var curYear = dayjs().format('YYYY');
 var curWeekDay = dayjs().format('dddd');
+
 //vars we need when formating the month dates
 var firstDayOfMonth = dayjs().startOf('month').$d;
 var weekdays = [0, 1, 2, 3, 4, 5, 6]; //used to determine padding days
 var numOfDays = dayjs().daysInMonth(); // number of days in the month
 var firstWDofMonth = dayjs().startOf('month').day();
 var paddingDays = weekdays[firstWDofMonth]; //how many black days we are going to have in beg of month
-var calDate;
-var dayBlock;
-var dayNumber;
-var holidayList = [];
+
+//connected to HTML
 var calendar = document.querySelector('#calendar');
 var sidebarList = document.querySelector('.sidebar-list');
-var calEvent;
 var plusSign = document.querySelector(".plus-sign");
-var saveTodo = document.querySelector("#save-todo")
-var curMonthDay = document.querySelector('#curMonthDay')
-var sideDate;
+var saveTodo = document.querySelector("#save-todo");
+var currentMonthYear = document.querySelector('#curr-month-year');
+var todaysWeekday = document.querySelector('#curWeekday');
+var curMonthDay = document.querySelector('#curMonthDay');
 var todoItem = document.querySelector("#todo-item");
-var todoItemArray = [];
+var dropDown = document.querySelector("#sportslist");
+var test = document.querySelector(".Sportsdropdown");
+
+// drop downs arent on clicks they are on changes.
+$(document).on('click', '.calendar-day', displayDay)
+saveTodo.addEventListener("click", saveEvent)
+
+function init() {
+    displayDates();
+    loadLocalStorage()
+    holidayData();
+}
+init()
+
 function displayDates() {
     //displays month and year at top of calendar
-    var currentMonthYear = document.querySelector('#curr-month-year');
     currentMonthYear.textContent = curMonth + ' ' + curYear;
     //displays current weekday into box on side of calendar
-    var todaysWeekday = document.querySelector('#curWeekday');
     todaysWeekday.textContent = curWeekDay;
     //displays todays date and month into box on side of calendar
-    //var curMonthDay = document.querySelector('#curMonthDay');
     curMonthDay.textContent = curMonth + ' ' + curDay;
     //function to compare the date number on the calendar to the current date and add class '.today'
     for (let i = 1; i <= paddingDays + numOfDays; i++) {
@@ -57,16 +73,14 @@ function displayDates() {
     //applies different color to today's date
     $('.calendar-date').map(function () {
         if (dayjs().format('YYYY-MM-D') == $(this).attr('id')) {
-            //console.log(dayjs().format('YYYY-MM-D'), $(this).attr('id'));
             $(this).addClass('today');
 
         }
     })
 
 }
-displayDates();
 
-function loadLocalStorage (){
+function loadLocalStorage() {
     sideDate = curYear + "-" + dayjs(curMonthDay.textContent).format("MM-DD")
     todoItemEl = document.createElement("p");
     todoItemEl.textContent = todoItem.value
@@ -75,8 +89,18 @@ function loadLocalStorage (){
     todoItemEl.textContent = localStorage.getItem(sideDate)
 }
 
-loadLocalStorage()
+function displayDay(event) {
+    // event.preventDefault();
+    $('.sidebar-list').empty();
 
+    curWeekday.innerHTML = dayjs($(this).children().attr("id")).format("dddd");
+    curMonthDay.innerHTML = dayjs($(this).children().attr("id")).format("MMMM D");
+
+    var dailyList = document.createElement("li");
+    dailyList.classList.add("sidebar-list-item");
+    sidebarList.appendChild(dailyList);
+    dailyList.textContent = $(this)[0].children[0].children[0].textContent || "";
+}
 
 async function run(team) {
     var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${team}/events?lang=en&region=us`
@@ -110,9 +134,17 @@ async function run(team) {
     }
 }
 
+// Listen for any clicks within the img-container div
+dropDown.addEventListener("click", function (event) {
+    var element = event.target;
+    var team = element.getAttribute("id");
+    run(team)
+
+});
+
 function holidayData() {
     var holidayAPI = 'https://calendarific.com/api/v2/holidays?&api_key=a650bf2c0b0cdf1c919ef9a9cef5fba2a18c8ef1&country=US&year=2022&type=national';
-   
+
     fetch(holidayAPI)
         .then(function (response) {
             return response.json();
@@ -127,7 +159,6 @@ function holidayData() {
                 var dateElements = document.querySelectorAll('.calendar-date');
                 dateElements.forEach(function (dateElement) {
                     if (holidayInfo.date == dateElement.id) {
-                        // console.log(holidayInfo.date, dateElement.id);
                         var calEvent = document.createElement("p");
                         //calDate.appendChild(calEvent) was calling the final most calDate. This looks up the specific calDate by id rather than call the last made.
                         document.getElementById(dateElement.id).appendChild(calEvent);
@@ -149,72 +180,17 @@ function holidayData() {
                     }
                 })
             }
-
         })
 }
-holidayData();
 
-var dropDown = document.querySelector("#sportslist");
-var test = document.querySelector(".Sportsdropdown")
-// Listen for any clicks within the img-container div
-
-dropDown.addEventListener("click", function (event) {
-    var element = event.target;
-    var team = element.getAttribute("id");
-    run(team)
-
-});  // drop downs arent on clicks they are on changes.
-
-$(document).on('click', '.calendar-day', displayDay)
-function displayDay(event) {
-    // event.preventDefault();
-    $('.sidebar-list').empty();
-
-    curWeekday.innerHTML = dayjs($(this).children().attr("id")).format("dddd");
-    curMonthDay.innerHTML = dayjs($(this).children().attr("id")).format("MMMM D");
-
-
-    var dailyList = document.createElement("li");
-    dailyList.classList.add("sidebar-list-item");
-    sidebarList.appendChild(dailyList);
-    dailyList.textContent = $(this)[0].children[0].children[0].textContent || "";
-
-
-}
-
-
-saveTodo.addEventListener("click", saveEvent)
-
-function saveEvent () {
-    console.log(curYear + "-" + dayjs(curMonthDay.textContent).format("MM-DD"))
+function saveEvent() {
     sideDate = curYear + "-" + dayjs(curMonthDay.textContent).format("MM-DD")
 
-
-    console.log(todoItem)
     todoItemEl = document.createElement("p");
     todoItemEl.textContent = todoItem.value
 
     document.getElementById(sideDate).appendChild(todoItemEl)
 
-    localStorage.setItem(sideDate, todoItemArray)
     todoItemArray.push(todoItem.value)
-
-
-
+    localStorage.setItem(sideDate, todoItemArray)
 }
-
-
-// saveTodo.addEventListener("click", function (event) {
-//      var todoTime = document.querySelector("#todo-time")
-//      var todoItem = document.querySelector("#todo-item")
-//         localStorage.setItem(Item ,todoTime.innerHTML);
-//         localStorage.setItem(( $()+"item",todoItem.innerHTML)
-
-    
-       
-
-    
-    
-
-
-// }); 
