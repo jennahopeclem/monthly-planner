@@ -5,7 +5,7 @@
 - This webpage is designed to organize your upcoming events.
 - The user can find upcoming holidays aswell as football games by team name .
 - The user can enter there own event plans and save them to the calender.
-- The calender self updates to highlight present day aswell as chnage dates and days to correspond with present month.
+- The calender self updates to highlight the present day aswell as change dates and days to correspond with present month.
 
  
 

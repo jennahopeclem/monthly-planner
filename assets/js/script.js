@@ -27,7 +27,6 @@ var curMonthDay = document.querySelector('#curMonthDay')
 var sideDate;
 var todoItem = document.querySelector("#todo-item");
 var todoItemArray = [];
-
 function displayDates() {
     //displays month and year at top of calendar
     var currentMonthYear = document.querySelector('#curr-month-year');
@@ -79,8 +78,8 @@ function loadLocalStorage (){
 loadLocalStorage()
 
 
-async function run(t) {
-    var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${t}/events?lang=en&region=us`
+async function run(team) {
+    var nflApi = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2022/teams/${team}/events?lang=en&region=us`
 
     const response = await fetch(nflApi);
     const data = await response.json();
@@ -91,12 +90,12 @@ async function run(t) {
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
-                var a = $("<p1>");
+                var gameDay = $("<p1>");
                 var dates = data.date.split("T")[0];
                 var times = data.date.split("T")[1].split("Z")[0];
-                a.textContent = dates;
+                gameDay.textContent = dates;
                 $('.calendar-date').map(function () {
-                    if (a.textContent == $(this).attr('id')) {
+                    if (gameDay.textContent == $(this).attr('id')) {
                         calEvent = document.createElement("p");
                         document.getElementById($(this).attr('id')).appendChild(calEvent);
                         calEvent.textContent = data.name + " " + times;
@@ -155,14 +154,14 @@ function holidayData() {
 }
 holidayData();
 
-var Dd = document.querySelector("#Sd");
+var dropDown = document.querySelector("#sportslist");
 var test = document.querySelector(".Sportsdropdown")
 // Listen for any clicks within the img-container div
 
-Dd.addEventListener("click", function (event) {
+dropDown.addEventListener("click", function (event) {
     var element = event.target;
-    var t = element.getAttribute("id");
-    run(t)
+    var team = element.getAttribute("id");
+    run(team)
 
 });  // drop downs arent on clicks they are on changes.
 
