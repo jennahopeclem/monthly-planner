@@ -42,7 +42,7 @@ saveTodo.addEventListener("click", saveEvent)
 function init() {
     displayDates();
     loadLocalStorage()
-    holidayData();
+    //holidayData();
 }
 init()
 
