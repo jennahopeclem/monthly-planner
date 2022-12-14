@@ -7,21 +7,13 @@
 - The user can enter there own event plans and save them to the calender.
 - The calender self updates to highlight the present day aswell as change dates and days to correspond with present month.
 
- 
-
- 
- 
- 
 ## Table of Contents
- 
- 
  
 - [Description](#description)
 - [Resources](#resources)
 - [Usage](#usage)
 - [Author](#author)
 - [Features](#features)
- 
  
  ## Resources
 - #https://www.w3schools.com/howto/howto_js_dropdown.asp
@@ -30,7 +22,6 @@
 - #https://materializecss.com/
 - #https://calendarific.com/api/v2/holidays?&api_key=0f6f3c056e70ebca75cebdcc5cbbadf546e7c0c1&country=US&year=2022
 - #https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=32
- 
  
 ## Usage
 - This website provides users with a real time calender.
@@ -44,11 +35,7 @@
 - This feild will appear on the left hand side of the calender.
 - After the user has input there message by clicking the save button it will be stored onto there calender.
 
- ![screenshot of calendar](assets/images/screenshot.png)
- 
- 
- 
- 
+ ![gif of calendar](./assets/images/monthly-planner-gif.gif)
  
 ## Features
  - Self updating calender.

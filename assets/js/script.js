@@ -34,10 +34,16 @@ var curMonthDay = document.querySelector('#curMonthDay');
 var todoItem = document.querySelector("#todo-item");
 var dropDown = document.querySelector("#sportslist");
 var test = document.querySelector(".Sportsdropdown");
+var weatherInfo = document.querySelector(".weather-info");
+var city = document.querySelector("#city");
+var citySearch = document.querySelector("#city-search");
+
 
 // drop downs arent on clicks they are on changes.
 $(document).on('click', '.calendar-day', displayDay)
 saveTodo.addEventListener("click", saveEvent)
+citySearch.addEventListener("click", weatherToday)
+
 
 function init() {
     displayDates();
@@ -99,6 +105,7 @@ function displayDay(event) {
     var dailyList = document.createElement("li");
     dailyList.classList.add("sidebar-list-item");
     sidebarList.appendChild(dailyList);
+
     dailyList.textContent = $(this)[0].children[0].children[0].textContent || "";
 }
 
@@ -183,14 +190,49 @@ function holidayData() {
         })
 }
 
+function weatherToday() {
+
+    var cityEntered = city.value
+    var weatherTodayAPI = `https://api.openweathermap.org/data/2.5/weather?q=${cityEntered}&units=imperial&appid=48e33596e5a1232d3d02e65e8291a16d`;
+
+    fetch(weatherTodayAPI).then((response) => {
+        // if response.ok is true, then the API link is working
+        if (response.ok)
+            response.json().then((data) => {
+                // if the API link is working, but there is no data
+                if (data.length === 0) {
+                    console.log("no link");
+                    // if there is data, then get these out of the data
+                } else {
+                    weatherInfo.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png"></img>
+                    <p>Temperature: ${data.main.temp}</p>`;
+                }
+            });
+    });
+}
+
 function saveEvent() {
     sideDate = curYear + "-" + dayjs(curMonthDay.textContent).format("MM-DD")
+    console.log(sideDate)
 
     todoItemEl = document.createElement("p");
     todoItemEl.textContent = todoItem.value
+    console.log(todoItemEl.textContent)
+    console.log(todoItem.value)
 
     document.getElementById(sideDate).appendChild(todoItemEl)
 
     todoItemArray.push(todoItem.value)
     localStorage.setItem(sideDate, todoItemArray)
 }
+
+
+
+
+
+
+
+
+
+
+
