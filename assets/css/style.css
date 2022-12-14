@@ -493,6 +493,10 @@ ul li ul li {
   overflow: scroll;
 }
 
+.weather-stuff {
+  background-color:#e66c72 ;
+}
+
 @media screen and (max-width: 992px) {
   .calendar-contain {
     width: 600px;
@@ -501,7 +505,6 @@ ul li ul li {
   .title-bar {
     width: 150px;
   }
-
   .sidebar-heading {
     float: left;
   }

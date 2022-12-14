@@ -35,7 +35,7 @@
 - This feild will appear on the left hand side of the calender.
 - After the user has input there message by clicking the save button it will be stored onto there calender.
 
- ![screenshot of calendar](assets/images/screenshot.png)
+ ![gif of calendar](./assets/images/monthly-planner-gif.gif)
  
 ## Features
  - Self updating calender.
